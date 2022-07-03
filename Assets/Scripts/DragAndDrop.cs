@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class DragAndDrop : MonoBehaviour, IDragHandler, IPointerDownHandler, IDropHandler
+public class DragAndDrop : MonoBehaviour, IDragHandler, IPointerDownHandler, IDropHandler, IEndDragHandler, IPointerClickHandler
 {
     private Vector3 startPosition;
     private Vector3 difPosition;
@@ -18,8 +18,31 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IPointerDownHandler, IDr
 
     public void OnDrop(PointerEventData eventData)
     {
+        EventSystem.current.currentSelectedGameObject.transform.parent = transform;
         float sizeY = GetComponent<RectTransform>().rect.size.y;
-        //to do - reorder elements
+        int index = (int)((((transform.position.y+(sizeY/2)) - Input.mousePosition.y))/35)-1;
+        if(index < 0)
+        {
+            index = 0;
+        }
+        Debug.Log(index);
+        EventSystem.current.currentSelectedGameObject.transform.SetSiblingIndex(index);
+        
+        Debug.Log("drop " + gameObject.name);
+        Debug.Log(transform);
+        // rebuilds the layout and its child elements (previously done in UIDrag)
+        // the objects that allow drop are the ones who actually need this rebuild
+        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
+
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -28,7 +51,7 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IPointerDownHandler, IDr
         difPosition = Input.mousePosition - startPosition;
         EventSystem.current.SetSelectedGameObject(gameObject);
         EventSystem.current.currentSelectedGameObject.transform.SetParent(canvas.transform);
-        EventSystem.current.currentSelectedGameObject.transform.SetAsLastSibling();
+        EventSystem.current.currentSelectedGameObject.transform.SetAsFirstSibling();
         //to do - check if first or last sibling works
         Debug.Log($"Started dragging: {gameObject.name}");
     }
