@@ -4,12 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class DragAndDrop : MonoBehaviour, IDragHandler, IPointerDownHandler, IDropHandler, IEndDragHandler, IPointerClickHandler
+public class DragAndDrop : MonoBehaviour, 
+IDragHandler, IPointerDownHandler, IDropHandler, 
+IEndDragHandler, IPointerClickHandler, IBeginDragHandler
 {
     private Vector3 startPosition;
     private Vector3 difPosition;
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject panelGhost;
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        gameObject.GetComponent<Image>().raycastTarget = false;
+    }
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -38,6 +45,7 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IPointerDownHandler, IDr
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        gameObject.GetComponent<Image>().raycastTarget = true;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -51,8 +59,7 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IPointerDownHandler, IDr
         difPosition = Input.mousePosition - startPosition;
         EventSystem.current.SetSelectedGameObject(gameObject);
         EventSystem.current.currentSelectedGameObject.transform.SetParent(canvas.transform);
-        EventSystem.current.currentSelectedGameObject.transform.SetAsFirstSibling();
-        //to do - check if first or last sibling works
+        EventSystem.current.currentSelectedGameObject.transform.SetAsLastSibling();
         Debug.Log($"Started dragging: {gameObject.name}");
     }
 
