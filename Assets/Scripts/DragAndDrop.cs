@@ -34,7 +34,7 @@ IEndDragHandler, IPointerClickHandler, IBeginDragHandler
         }
         Debug.Log(index);
         EventSystem.current.currentSelectedGameObject.transform.SetSiblingIndex(index);
-        
+        EventSystem.current.SetSelectedGameObject(null);
         Debug.Log("drop " + gameObject.name);
         Debug.Log(transform);
         // rebuilds the layout and its child elements (previously done in UIDrag)
