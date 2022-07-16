@@ -14,6 +14,8 @@ public class BlockInformation : ScriptableObject
     public bool HasBottomConnector;
 
 }
-public enum BlockType{ACTION, OPERATOR, CONTROL, VARIABLE, FUNCTION}
+public enum BlockType{ACTION, OPERATOR, CONTROL, VARIABLE, FUNCTION, EVENTS}
 public enum VariableInputType{DROPDOWN, TYPEABLE, PREDICATE}
+public enum EventType{FROM_START, EVERY_N_SECONDS, DEFINE_FUNCTION}
+
 

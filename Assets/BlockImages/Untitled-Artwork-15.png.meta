@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1a157f2ff73fb4b418aa579183659341
+guid: d10e8f89c19d1f341bce249b52d2237f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 3
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,7 +52,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: 0
+  spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -114,34 +114,43 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline:
-    - - {x: -142.5, y: -39.5}
-      - {x: -158.5, y: -57.5}
-      - {x: -189.5, y: -57.5}
-      - {x: -205.5, y: -39.5}
-      - {x: -233.5, y: -39.5}
-      - {x: -234.5, y: 55.5}
-      - {x: -205.5, y: 56.5}
-      - {x: -188.5, y: 41.5}
-      - {x: -157.5, y: 41.5}
-      - {x: -142.5, y: 55.5}
-      - {x: 256.5, y: 55.5}
-      - {x: 256.5, y: -40.5}
-    physicsShape:
-    - - {x: -243.5, y: -59.5}
-      - {x: -243.5, y: 60.5}
-      - {x: 263.5, y: 60.5}
-      - {x: 263.5, y: -59.5}
+    sprites:
+    - serializedVersion: 2
+      name: Def Parameter
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 1022
+        width: 336
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12b69e0ab72fe904d9ba61f871c60431
+      internalID: 573683824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Untitled-Artwork-15_3: 1231295152
+      Untitled-Artwork-15_2: -1869575107
+      Def Parameter: 573683824
+      Untitled-Artwork-15_1: 405385032
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

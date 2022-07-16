@@ -5,11 +5,15 @@ using UnityEngine;
 public class Interpreter : MonoBehaviour
 {   
     private Dictionary<string, string> variables = new();
+    [SerializeField] List<BlockGroup> blockGroups = new();
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        foreach (var block in FindObjectsOfType<TopBlock>()){
+            blockGroups.Add(block.Group);
+        }
     }
     public bool SetVariable(string varName, string varValue)
     {
@@ -54,4 +58,13 @@ public class Interpreter : MonoBehaviour
         }
         return false;
     }
+}
+
+[System.Serializable]
+
+public class BlockGroup 
+{
+    public List <BlockGroup> ListOfBlocks = null;
+    public BlockInformation BlockInfo;
+    
 }
