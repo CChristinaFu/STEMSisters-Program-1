@@ -1,29 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Toolbox.Editor;
+using UnityEngine.Events;
+using System.Linq;
 
 public class Interpreter : MonoBehaviour
 {   
-    private Dictionary<string, string> variables = new();
+    [SerializeField] SerializedDictionary<string, BlockVariable> variables = new();
     [SerializeField] List<BlockGroup> blockGroups = new();
-
-
+    public class UEvent_List_Int: UnityEvent<List<string>>{}
+    public UEvent_List_Int OnVariableUpdate = new();
     // Start is called before the first frame update
     void Start()
     {
         foreach (var block in FindObjectsOfType<TopBlock>()){
             blockGroups.Add(block.Group);
         }
+        OnVariableUpdate.Invoke(variables.Keys.ToList());
     }
     public bool SetVariable(string varName, string varValue)
     {
-        variables.Add(varName,varValue);
+        //variables.Add(varName,varValue);
         return true;
     }
     public bool GetVariable(string varName, out string varValue)
     {
-        return variables.TryGetValue(varName, out varValue);
-        
+        varValue = "";
+        //return variables.TryGetValue(varName, out varValue);
+        return false;
+    
     }
     public bool Skip() => true;
     public bool IfElse(bool condition, BaseBlock trueBranch, BaseBlock falseBranch)
@@ -67,4 +73,9 @@ public class BlockGroup
     public List <BlockGroup> ListOfBlocks = null;
     public BlockInformation BlockInfo;
     
+}
+
+[System.Serializable] public class BlockVariable{
+public List<int> VariableData = new();
+public bool IsList = false;
 }
