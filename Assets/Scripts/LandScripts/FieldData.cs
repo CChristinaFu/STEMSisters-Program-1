@@ -14,14 +14,13 @@ private void Awake() {
 }
 public void RandomizeField(){
     for (int i = 0; i < subField.Length; i++){
-        subField[i] = new();
-        subField[i].CropID = Random.Range(0,Crops.Count);
+       PlantSeed(Random.Range(0,Crops.Count),i);
     }
 }
 public void GrowthUpdate(){
     foreach (var crop in subField)
     {
-    if (crop.CropID<Crops.Count){
+    if (crop!= null && crop.CropID >= 0 && crop.CropID<Crops.Count){
         var currentCrop = Crops[crop.CropID];
         if (crop.currentGrowthLevel<currentCrop.growthLevel){
             crop.currentGrowthLevel ++; 
@@ -50,14 +49,49 @@ public void WaterUpdate(float waterGiven){
     //Q2: How do we determine if the plant has met the overall water requirements?
     //Q3: How do we calculate if daily water requirements are met?
 }
+public bool PlantSeed(int CropIDToPlant, int location){
+    //check if field is empty
+    location = Mathf.Clamp(location,0,subField.Length-1);
+    subField[location] = new(){
+        CropID=CropIDToPlant,
+        currentGrowthLevel=0,
+        witherTimer = Crops[CropIDToPlant].witherTimer,
+        waterAmount=0,
+    };
+    return true;
+}
+public bool DiscardCrop(int location){
+    location = Mathf.Clamp(location,0,subField.Length-1);
+    subField[location] = null;
+    return true;
+}
+public bool TryHarvestCrop(int location, out CropData crop){
+    crop = null;
+    location = Mathf.Clamp(location,0,subField.Length-1);
+    var currentCrop = subField[location];
+    if (currentCrop != null 
+    && !currentCrop.IsWithered 
+    && currentCrop.currentGrowthLevel 
+    == Crops[currentCrop.CropID].growthLevel){
+        crop = Crops[currentCrop.CropID]; 
+        DiscardCrop(location);
+        return true;
+    }
+    return false;
+}
+[SerializeField, EditorButton (nameof(TestDiscard))] int testLocation = 0;
+    public void TestDiscard(){
+        DiscardCrop(testLocation);
+
+    }
 }
 [System.Serializable]
 public class FieldCrop
 {
-    public int CropID;
-    public int currentGrowthLevel;
-    public int witherTimer;
-    public float waterAmount;
+    public int CropID = -1;
+    public int currentGrowthLevel =-1;
+    public int witherTimer=-1;
+    public float waterAmount=-1;
     public WaterStatus waterStatus;
     public bool IsWithered = false;
 }
