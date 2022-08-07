@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 679633e80aaa05e40bf7be3d8ccf2200, type: 3}
+  m_Name: Jam Recipe
+  m_EditorClassIdentifier: 
+  inputProducts:
+    pairs:
+    - key: {fileID: 11400000, guid: 05f6ca14442c74d4cb93d323e5859eb4, type: 2}
+      value: 1
+    - key: {fileID: 11400000, guid: 6f65701dcfa667841aba13c8ac27ed7f, type: 2}
+      value: 1
+    error: 0
+  outputProduct: {fileID: 11400000, guid: d401f2304b90e8540a6ec267f33227dc, type: 2}
+  outputCount: 1

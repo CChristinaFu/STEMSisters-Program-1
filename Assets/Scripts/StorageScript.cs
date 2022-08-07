@@ -11,10 +11,20 @@ public class StorageScript : MonoBehaviour
         * Create by taking raw ingredients and making new product 
             * how do we store the recipies?
         * Clear store, should happen at the end of every turn
+        * Sell to market, will total all the prices for the products in storage, 
+            and add that to the money system; also clears storage at the end
     */
     [SerializeField] private SerializedDictionary<ProductData, int> storage;
     [SerializeField] List<RecipeData> recipes = new();
+    [SerializeField] MoneySystem market;
+    private void Awake()
+    {
+        if (market == null)
+        {
+            market = FindObjectOfType<MoneySystem>();
 
+        }
+    }
     public bool MoveToStorage(FieldSystem field)
     {
         bool hasHarvested = false;
@@ -42,10 +52,25 @@ public class StorageScript : MonoBehaviour
         }
         return false;
     }
+    public void ClearStorage()
+    {
+        storage.Clear();
 
+    }
+    public int SellToMarket()
+    {
+        int total = 0;
+        foreach (var (product, count) in storage)
+        {
+            total += product.productPrice * count;
+        }
+        ClearStorage();
+        market.UpdateMoney(total);
+        return total;
+    }
 #if UNITY_EDITOR
     [SerializeField, EditorButton(nameof(TestHarvest))] private FieldSystem currentTestingField;
-    [SerializeField, EditorButton(nameof(TestCreateNewProduct))] private int testRecipeID = -1;
+    [SerializeField, EditorButton(nameof(TestCreateNewProduct)), EditorButton(nameof(TestSellStorage))] private int testRecipeID = -1;
 
     private void TestHarvest()
     {
@@ -58,6 +83,11 @@ public class StorageScript : MonoBehaviour
     private void TestCreateNewProduct()
     {
         CreateNewProduct(testRecipeID);
+    }
+    private void TestSellStorage()
+    {
+        var totalPrice = SellToMarket();
+        Debug.Log($"total money made = {totalPrice}");
     }
 #endif
 }

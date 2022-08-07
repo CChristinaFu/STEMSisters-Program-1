@@ -7,4 +7,6 @@ public class ProductData : ScriptableObject
 {
     public Sprite productImage;
     public int productPrice = 1;
+    public string productName;
+    
 }
