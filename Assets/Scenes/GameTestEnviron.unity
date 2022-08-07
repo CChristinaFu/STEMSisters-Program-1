@@ -269,8 +269,62 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05f6ca14442c74d4cb93d323e5859eb4, type: 2}
   - {fileID: 11400000, guid: 6f65701dcfa667841aba13c8ac27ed7f, type: 2}
   GridSize: {x: 3, y: 3}
-  subField: []
-  testLocation: 0
+  subField:
+  - CropID: 0
+    currentGrowthLevel: 2
+    witherTimer: 1
+    waterAmount: 0
+    waterStatus: 0
+    IsWithered: 0
+  - CropID: -1
+    currentGrowthLevel: -1
+    witherTimer: -1
+    waterAmount: -1
+    waterStatus: 0
+    IsWithered: 0
+  - CropID: -1
+    currentGrowthLevel: -1
+    witherTimer: -1
+    waterAmount: -1
+    waterStatus: 0
+    IsWithered: 0
+  - CropID: 1
+    currentGrowthLevel: 2
+    witherTimer: 1
+    waterAmount: 0
+    waterStatus: 0
+    IsWithered: 0
+  - CropID: 0
+    currentGrowthLevel: 2
+    witherTimer: 1
+    waterAmount: 0
+    waterStatus: 0
+    IsWithered: 0
+  - CropID: 1
+    currentGrowthLevel: 2
+    witherTimer: 1
+    waterAmount: 0
+    waterStatus: 0
+    IsWithered: 0
+  - CropID: 1
+    currentGrowthLevel: 2
+    witherTimer: 1
+    waterAmount: 0
+    waterStatus: 0
+    IsWithered: 0
+  - CropID: 0
+    currentGrowthLevel: 2
+    witherTimer: 1
+    waterAmount: 0
+    waterStatus: 0
+    IsWithered: 0
+  - CropID: 1
+    currentGrowthLevel: 2
+    witherTimer: 1
+    waterAmount: 0
+    waterStatus: 0
+    IsWithered: 0
+  testLocation: 2
 --- !u!1 &830688339
 GameObject:
   m_ObjectHideFlags: 0

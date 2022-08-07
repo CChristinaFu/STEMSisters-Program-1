@@ -13,9 +13,9 @@ public class StorageScript : MonoBehaviour
         * Clear store, should happen at the end of every turn
     */
     [SerializeField] private SerializedDictionary<ProductData, int> storage;
-    [SerializeField] List<RecipeData> recipes =new();
+    [SerializeField] List<RecipeData> recipes = new();
 
-    public bool moveToStorage(FieldData field)
+    public bool MoveToStorage(FieldSystem field)
     {
         bool hasHarvested = false;
 
@@ -33,11 +33,31 @@ public class StorageScript : MonoBehaviour
         }
         return hasHarvested;
     }
-public bool createNewProduct(int recipeID){
-    if (recipeID >=0 && recipeID<recipes.Count){
-        recipes[recipeID].ProduceProducts(storage);
-        return true;
+    public bool CreateNewProduct(int recipeID)
+    {
+        if (recipeID >= 0 && recipeID < recipes.Count)
+        {
+            recipes[recipeID].ProduceProducts(storage);
+            return true;
+        }
+        return false;
     }
-    return false;
-}
+
+#if UNITY_EDITOR
+    [SerializeField, EditorButton(nameof(TestHarvest))] private FieldSystem currentTestingField;
+    [SerializeField, EditorButton(nameof(TestCreateNewProduct))] private int testRecipeID = -1;
+
+    private void TestHarvest()
+    {
+        if (currentTestingField)
+        {
+            MoveToStorage(currentTestingField);
+        }
+    }
+
+    private void TestCreateNewProduct()
+    {
+        CreateNewProduct(testRecipeID);
+    }
+#endif
 }

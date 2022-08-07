@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldData : MonoBehaviour
+public class FieldSystem : MonoBehaviour
 {
     [EditorButton(nameof(GrowthUpdate))]
     public List<CropData> Crops;
@@ -12,13 +12,6 @@ public class FieldData : MonoBehaviour
     private void Awake()
     {
         subField = new FieldCrop[GridSize.x * GridSize.y];
-    }
-    public void RandomizeField()
-    {
-        for (int i = 0; i < subField.Length; i++)
-        {
-            PlantSeed(Random.Range(0, Crops.Count), i);
-        }
     }
     public void GrowthUpdate()
     {
@@ -76,6 +69,7 @@ public class FieldData : MonoBehaviour
     }
     public bool DiscardCrop(int location)
     {
+        if (subField == null) return false;
         location = Mathf.Clamp(location, 0, subField.Length - 1);
         subField[location] = null;
         return true;
@@ -83,6 +77,7 @@ public class FieldData : MonoBehaviour
     public bool TryHarvestCrop(int location, out CropData crop)
     {
         crop = null;
+        if (subField == null) return false;
         location = Mathf.Clamp(location, 0, subField.Length - 1);
         var currentCrop = subField[location];
         if (currentCrop != null
@@ -108,12 +103,31 @@ public class FieldData : MonoBehaviour
         }
         return HarvestedCrops;
     }
-    [SerializeField, EditorButton(nameof(TestDiscard))] int testLocation = 0;
-    public void TestDiscard()
+    public void RandomizeField()
+    {
+        subField = new FieldCrop[GridSize.x * GridSize.y];
+        for (int i = 0; i < subField.Length; i++)
+        {
+            PlantSeed(Random.Range(0, Crops.Count), i);
+        }
+    }
+
+#if UNITY_EDITOR
+    // For In-Editor Unity Testing ONLY
+    [SerializeField, EditorButton(nameof(TestDiscard)), EditorButton(nameof(TestHarvest))] int testLocation = 0;
+    private void TestDiscard()
     {
         DiscardCrop(testLocation);
+    }
+    private void TestHarvest()
+    {
+        if (TryHarvestCrop(testLocation, out var harvestedCrop))
+        {
+            Debug.Log($"Successfully Harvested: {harvestedCrop}");
+        }
 
     }
+#endif
 }
 [System.Serializable]
 public class FieldCrop
