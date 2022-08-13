@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BlankRed
+      name: Blank_Red
       rect:
         serializedVersion: 2
         x: 623
@@ -169,7 +169,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Untitled-Artwork-5 (1)_1: -740806784
-      BlankRed: -1439598027
+      Blank_Red: -1439598027
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
