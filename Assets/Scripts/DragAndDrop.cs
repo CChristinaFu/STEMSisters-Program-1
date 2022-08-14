@@ -5,25 +5,16 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-public class DragAndDropUIScript : MonoBehaviour,
+public class DragAndDrop : MonoBehaviour,
 IDragHandler, IPointerDownHandler, IDropHandler,
 IEndDragHandler, IPointerClickHandler, IBeginDragHandler
 {
     private Vector3 startPosition;
     private Vector3 difPosition;
-    [SerializeField] GameObject codeEditor;
+    [SerializeField] GameObject canvas;
     [SerializeField] GameObject panelGhost;
     public UnityEvent OnStartDragging = new();
     public UnityEvent OnDropBlock = new();
-
-    private void Start()
-    {
-        if (codeEditor == null)
-        {
-            codeEditor = GameObject.FindGameObjectWithTag(UtilityConstAndExt.CODE_EDITOR_TAG);
-        }
-    }
-
     public void OnBeginDrag(PointerEventData eventData)
     {
         gameObject.GetComponent<Image>().raycastTarget = false;
@@ -69,10 +60,21 @@ IEndDragHandler, IPointerClickHandler, IBeginDragHandler
         startPosition = transform.position;
         difPosition = Input.mousePosition - startPosition;
         EventSystem.current.SetSelectedGameObject(gameObject);
-        EventSystem.current.currentSelectedGameObject.transform.SetParent(codeEditor.transform);
+        EventSystem.current.currentSelectedGameObject.transform.SetParent(canvas.transform);
         EventSystem.current.currentSelectedGameObject.transform.SetAsLastSibling();
         Debug.Log($"Started dragging: {gameObject.name}");
         OnStartDragging.Invoke();
     }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }
