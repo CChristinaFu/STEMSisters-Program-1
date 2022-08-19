@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6da1982a99419e4a96e631a83eac4f5, type: 3}
   m_Name: Strawberries
   m_EditorClassIdentifier: 
-  cropName: 
-  cropPrice: 1
+  productImage: {fileID: 0}
+  productPrice: 1
+  productName: Strawberries
   growthLevel: 2
+  witherTimer: 1
   waterconsumption: 2
   WaterRequirements: {x: 0, y: 0}
-  GrowthLevelImages: []
+  GrowthLevelImages:
+  - {fileID: 21300000, guid: 8d4fa5998e4b50c40875b1e1f21005f8, type: 3}
+  - {fileID: 21300000, guid: 111a1150de3f66d44953ab4368827e1e, type: 3}
+  - {fileID: 21300000, guid: a4d85d345a8c5c04f8e266952fc26b44, type: 3}
+  witherImage: {fileID: 21300000, guid: adfae103208dcfb479b198bfb03f095e, type: 3}

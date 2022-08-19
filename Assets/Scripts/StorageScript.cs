@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class StorageScript : MonoBehaviour
 {
@@ -17,14 +18,35 @@ public class StorageScript : MonoBehaviour
     [SerializeField] private SerializedDictionary<ProductData, int> storage;
     [SerializeField] List<RecipeData> recipes = new();
     [SerializeField] MoneySystem market;
-    private void Awake()
+
+    public UEvent_str OnStorageUpdate = new();
+    private void Start()
     {
         if (market == null)
         {
             market = FindObjectOfType<MoneySystem>();
+        }
+        StorageHasUpdated();
+    }
 
+    private void StorageHasUpdated()
+    {
+        if (storage.Count == 0)
+        {
+            OnStorageUpdate.Invoke("Empty");
+        }
+        else
+        {
+            string storageString = "{\n";
+            foreach (var item in storage.Keys)
+            {
+                storageString += $"\t{item.productName} (amount = {storage[item]}, price = {item.productPrice}),\n";
+            }
+            storageString += "}";
+            OnStorageUpdate.Invoke(storageString);
         }
     }
+
     public bool MoveToStorage(FieldSystem field)
     {
         bool hasHarvested = false;
@@ -41,13 +63,24 @@ public class StorageScript : MonoBehaviour
             }
             hasHarvested = true;
         }
+        if (hasHarvested)
+        {
+            StorageHasUpdated();
+        }
         return hasHarvested;
     }
+
+    public void MoveToStorageNoOutput(FieldSystem field)
+    {
+        MoveToStorage(field);
+    }
+
     public bool CreateNewProduct(int recipeID)
     {
         if (recipeID >= 0 && recipeID < recipes.Count)
         {
             recipes[recipeID].ProduceProducts(storage);
+            StorageHasUpdated();
             return true;
         }
         return false;
@@ -55,7 +88,7 @@ public class StorageScript : MonoBehaviour
     public void ClearStorage()
     {
         storage.Clear();
-
+        StorageHasUpdated();
     }
     public int SellToMarket()
     {
@@ -68,7 +101,7 @@ public class StorageScript : MonoBehaviour
         market.UpdateMoney(total);
         return total;
     }
-#if UNITY_EDITOR
+    // #if UNITY_EDITOR
     [SerializeField, EditorButton(nameof(TestHarvest))] private FieldSystem currentTestingField;
     [SerializeField, EditorButton(nameof(TestCreateNewProduct)), EditorButton(nameof(TestSellStorage))] private int testRecipeID = -1;
 
@@ -80,14 +113,14 @@ public class StorageScript : MonoBehaviour
         }
     }
 
-    private void TestCreateNewProduct()
+    public void TestCreateNewProduct()
     {
         CreateNewProduct(testRecipeID);
     }
-    private void TestSellStorage()
+    public void TestSellStorage()
     {
         var totalPrice = SellToMarket();
         Debug.Log($"total money made = {totalPrice}");
     }
-#endif
+    // #endif
 }

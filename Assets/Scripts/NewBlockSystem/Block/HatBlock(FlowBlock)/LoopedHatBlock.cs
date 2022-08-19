@@ -1,0 +1,13 @@
+﻿/// <summary>
+/// LoopedHatBlock
+[NotAutomaticallyMadeOnBlockShop]
+[BlockDefinitionAttribute("Looped Block")]
+[System.Serializable]
+public sealed class LoopedHatBlock : HatBlock
+{
+
+    sealed public override void Operation(Interpreter interpreter)
+    {
+        //DO NOTHING, JUST CALL NEXT BLOCK
+    }
+}

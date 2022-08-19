@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - CodeEditor
+  - BlockEditorUnit
+  - FlowBlockConnector
+  - InputDefinitionOfBlockEditorUnitTag
+  - BlockEditorBody
   layers:
   - Default
   - TransparentFX

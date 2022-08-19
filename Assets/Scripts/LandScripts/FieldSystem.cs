@@ -7,11 +7,18 @@ public class FieldSystem : MonoBehaviour
     [EditorButton(nameof(GrowthUpdate))]
     public List<CropData> Crops;
     [SerializeField] Vector2Int GridSize = new(3, 3);
+    public Vector2Int GetGridSize => GridSize;
     [EditorButton(nameof(RandomizeField))]
     public FieldCrop[] subField;
     private void Awake()
     {
         subField = new FieldCrop[GridSize.x * GridSize.y];
+    }
+
+    public FieldCrop GetFieldCrop(int location)
+    {
+        location = Mathf.Clamp(location, 0, subField.Length - 1);
+        return subField[location];
     }
     public void GrowthUpdate()
     {
@@ -112,7 +119,25 @@ public class FieldSystem : MonoBehaviour
         }
     }
 
-#if UNITY_EDITOR
+    public void DiscardAll()
+    {
+        for (int i = 0; i < subField.Length; i++)
+        {
+            DiscardCrop(i);
+        }
+    }
+
+    public void PlantAll(int cropID)
+    {
+        cropID = Mathf.Clamp(cropID, 0, Crops.Count - 1);
+        subField = new FieldCrop[GridSize.x * GridSize.y];
+        for (int i = 0; i < subField.Length; i++)
+        {
+            PlantSeed(cropID, i);
+        }
+    }
+
+    // #if UNITY_EDITOR
     // For In-Editor Unity Testing ONLY
     [SerializeField, EditorButton(nameof(TestDiscard)), EditorButton(nameof(TestHarvest))] int testLocation = 0;
     private void TestDiscard()
@@ -127,7 +152,7 @@ public class FieldSystem : MonoBehaviour
         }
 
     }
-#endif
+    // #endif
 }
 [System.Serializable]
 public class FieldCrop

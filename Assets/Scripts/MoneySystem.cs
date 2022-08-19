@@ -7,9 +7,9 @@ public class MoneySystem : MonoBehaviour
 {
     [SerializeField] int currentMoney = 1_000;
     public UEvent_int OnMoneyUpdate = new();
-    void Awake()
+    void Start()
     {
-        
+        OnMoneyUpdate.Invoke(currentMoney);
     }
 
     public void UpdateMoney(int amount)
@@ -20,10 +20,5 @@ public class MoneySystem : MonoBehaviour
 
     }
     public bool HasEnoughMoney(int moneyCheck) => moneyCheck <= currentMoney;
-  
-}
-[System.Serializable]
-public class UEvent_int:UnityEvent<int>
-{
 
 }
