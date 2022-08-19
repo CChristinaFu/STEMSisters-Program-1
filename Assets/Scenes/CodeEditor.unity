@@ -250,7 +250,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 116, y: 391}
+  m_AnchoredPosition: {x: 116, y: 700}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &505889309
@@ -481,9 +481,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 72
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 2880, y: 1620}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1067,7 +1067,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 364, y: 391}
+  m_AnchoredPosition: {x: 364, y: 700}
   m_SizeDelta: {x: 256.445, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1131975646
@@ -4507,12 +4507,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 552923302}
     m_Modifications:
+    - target: {fileID: 1553914191993373352, guid: f8dd5ae160cde49d8b7adc660f44aa71, type: 3}
+      propertyPath: _GUIStyle.m_StretchWidth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4967719566454338966, guid: f8dd5ae160cde49d8b7adc660f44aa71, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4967719566454338966, guid: f8dd5ae160cde49d8b7adc660f44aa71, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4967719566454338966, guid: f8dd5ae160cde49d8b7adc660f44aa71, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4967719566512997599, guid: f8dd5ae160cde49d8b7adc660f44aa71, type: 3}
@@ -4697,6 +4705,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4967719567709774919, guid: f8dd5ae160cde49d8b7adc660f44aa71, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4967719567709774919, guid: f8dd5ae160cde49d8b7adc660f44aa71, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
