@@ -142,9 +142,8 @@ public abstract class BlockEditorWindow : MonoBehaviour
     private void InitSourceCodeViewer()
     {
         if (this._RobotSourceCode == null)
-            return;
-
-
+            //return;
+            this._RobotSourceCode = new("New Robot Source Code");
         //Spawn Hat Blocks
         BlockEditorUnit initBlockEditorUnit = BlockEditorManager.instnace.SpawnFlowBlockEditorUnit(this._RobotSourceCode.InitBlock, null, this, SourceCodeViewerRectTransform);
         BlockEditorUnit loopedBlockEditorUnit = BlockEditorManager.instnace.SpawnFlowBlockEditorUnit(this._RobotSourceCode.LoopedBlock, null, this, SourceCodeViewerRectTransform);

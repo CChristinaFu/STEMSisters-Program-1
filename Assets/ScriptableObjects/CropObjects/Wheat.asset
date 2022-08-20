@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6da1982a99419e4a96e631a83eac4f5, type: 3}
   m_Name: Wheat
   m_EditorClassIdentifier: 
-  cropName: 
-  cropPrice: 1
+  productImage: {fileID: 0}
+  productPrice: 1
+  productName: 
   growthLevel: 2
+  witherTimer: 1
   waterconsumption: 2
   WaterRequirements: {x: 0, y: 0}
-  GrowthLevelImages: []
+  GrowthLevelImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 474e09b2363a8e047b26b6d2e4bbc24f, type: 3}
+  witherImage: {fileID: 0}

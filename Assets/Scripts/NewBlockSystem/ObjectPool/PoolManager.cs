@@ -24,7 +24,8 @@ public class PoolManager : Singleton<PoolManager>
     {
         if (prefab == null)
             return;
-
+        if (prefabLookup == null)
+            prefabLookup = new Dictionary<GameObject, ObjectPool<GameObject>>();
         if (prefabLookup.ContainsKey(prefab))
         {
             throw new Exception("Pool for prefab " + prefab.name + " has already been created");

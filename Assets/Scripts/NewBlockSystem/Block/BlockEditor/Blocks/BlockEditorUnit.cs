@@ -348,7 +348,7 @@ public abstract class BlockEditorUnit : BlockEditorElement
                     {
 
 
-#if UNITY_EDITOR
+                        //#if UNITY_EDITOR
                         if (parameterTypes == null || this.parameterIndex >= parameterTypes.Length)
                         {
                             Debug.LogError("Can't add BlockInputDefinitionContent Please Change BlockDefinitionAttribute of Block ( " + this.TargetBlock.GetType().Name + " ) ");
@@ -362,7 +362,7 @@ public abstract class BlockEditorUnit : BlockEditorElement
                             Debug.LogError("Improper BlockDefinitionAttribute of Block ( " + this.TargetBlock.GetType().Name + " ) , " + parameterTypes[this.parameterIndex].Name + " : " + blockDefinitionType.ToString());
                             continue;
                         }
-#endif
+                        //#endif
 
                         switch (blockDefinitionType)
                         {

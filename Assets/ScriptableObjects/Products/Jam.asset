@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Jam
   m_EditorClassIdentifier: 
   productImage: {fileID: 0}
-  productPrice: 2
+  productPrice: 4
   productName: Jam
