@@ -5,16 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/BlocksEngine2/Scenes/BE2SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/BlocksEngine2_Horizontal/Scenes/HorizontalBE2SampleScene.unity
-    guid: 294291218165234658366afe54f7cb81
   - enabled: 1
-    path: Assets/BlocksEngine2/Scenes/BE2MultipleTargetObjects.unity
-    guid: 0333588ed2034d28cbcc190ca5aeeb80
-  - enabled: 0
-    path: Assets/BlocksEngine2_SciFi/Scenes/ScifiBE2SampleScene.unity
-    guid: 28db5afba24f900ba844c731679c8717
+    path: Assets/Scenes/NewCodeEditor.unity
+    guid: f2c473d31b746457f88fabe4601e1008
+  - enabled: 1
+    path: Assets/Scenes/GameTestEnviron.unity
+    guid: e1533f3dabb02294ea7316d9ee996e4c
   m_configObjects: {}
