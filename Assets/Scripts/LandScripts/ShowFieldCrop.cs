@@ -28,8 +28,17 @@ public class ShowFieldCrop : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
+    {
+        field.OnFieldUpdate.AddListener(FieldUpdate);
+    }
+
+    private void OnDisable()
+    {
+        field.OnFieldUpdate.RemoveListener(FieldUpdate);
+    }
+
+    void FieldUpdate()
     {
         for (int i = 0; i < transform.childCount; i++)
         {

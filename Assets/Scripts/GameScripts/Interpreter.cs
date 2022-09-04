@@ -7,6 +7,13 @@ using System.Linq;
 
 public class Interpreter : BE2_TargetObject
 {
+    [field: SerializeField]
+    public StorageScript Storage { get; private set; }
+    [field: SerializeField]
+    public MoneySystem Money { get; private set; }
+    [SerializeField]
+    private List<FieldSystem> fields = new();
+
     [SerializeField] private SerializedDictionary<ProductVariableKind, ProductData[]> productDictionary = new();
 
     public class UEvent_List_Var : UnityEvent<List<string>> { }
@@ -21,6 +28,14 @@ public class Interpreter : BE2_TargetObject
         return new ProductData[0];
     }
 
+    public FieldSystem GetField(int fieldNumber)
+    {
+        if (fieldNumber >= 0 && fieldNumber < fields.Count)
+        {
+            return fields[fieldNumber];
+        }
+        return null;
+    }
 }
 
 public enum ProductVariableKind

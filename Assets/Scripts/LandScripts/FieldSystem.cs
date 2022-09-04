@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FieldSystem : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class FieldSystem : MonoBehaviour
     public Vector2Int GetGridSize => GridSize;
     [EditorButton(nameof(RandomizeField))]
     public FieldCrop[] subField;
+
+    public UnityEvent OnFieldUpdate = new();
     private void Awake()
     {
         subField = new FieldCrop[GridSize.x * GridSize.y];
@@ -41,6 +44,7 @@ public class FieldSystem : MonoBehaviour
                 }
             }
         }
+        OnFieldUpdate.Invoke();
     }
     public float TotalWaterConsumption()
     {
@@ -60,6 +64,7 @@ public class FieldSystem : MonoBehaviour
         //Q1: How do we split waterGiven between all the crops after every update?
         //Q2: How do we determine if the plant has met the overall water requirements?
         //Q3: How do we calculate if daily water requirements are met?
+        OnFieldUpdate.Invoke();
     }
     public bool PlantSeed(int CropIDToPlant, int location)
     {
@@ -72,6 +77,7 @@ public class FieldSystem : MonoBehaviour
             witherTimer = Crops[CropIDToPlant].witherTimer,
             waterAmount = 0,
         };
+        OnFieldUpdate.Invoke();
         return true;
     }
     public bool DiscardCrop(int location)
@@ -79,6 +85,7 @@ public class FieldSystem : MonoBehaviour
         if (subField == null) return false;
         location = Mathf.Clamp(location, 0, subField.Length - 1);
         subField[location] = null;
+        OnFieldUpdate.Invoke();
         return true;
     }
     public bool TryHarvestCrop(int location, out CropData crop)
@@ -93,9 +100,9 @@ public class FieldSystem : MonoBehaviour
         == Crops[currentCrop.CropID].growthLevel)
         {
             crop = Crops[currentCrop.CropID];
-            DiscardCrop(location);
-            return true;
+            return DiscardCrop(location);
         }
+        OnFieldUpdate.Invoke();
         return false;
     }
     public List<CropData> HarvestAllCrops()
