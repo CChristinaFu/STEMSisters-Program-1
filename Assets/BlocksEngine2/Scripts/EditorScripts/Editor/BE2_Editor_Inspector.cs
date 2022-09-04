@@ -35,7 +35,7 @@ public class BE2_Editor_Inspector : Editor
         EditorGUILayout.LabelField("Block Header Markup");
         EditorGUILayout.HelpBox(
             "Write the header text and inputs in a single line. Additional headers in new lines. \n" +
-            "Possible input types are $text, $dropdown, or $range. \n" +
+            "Possible input types are $fillin, $text, $dropdown, or $range. \n" +
             "Also predefined dropdown for $crops, $animals, and $recipes."
             , MessageType.Info);
 
@@ -49,6 +49,7 @@ public class BE2_Editor_Inspector : Editor
             List<int> inputMarkIndexes = inspector.AllIndexesOf(inspector.blockHeaderMarkup, "$text");
             inputMarkIndexes.AddRange(inspector.AllIndexesOf(inspector.blockHeaderMarkup, "$dropdown"));
             inputMarkIndexes.AddRange(inspector.AllIndexesOf(inspector.blockHeaderMarkup, "$range"));
+            inputMarkIndexes.AddRange(inspector.AllIndexesOf(inspector.blockHeaderMarkup, "$fillin"));
             BE2_ArrayUtils.Resize(ref inspector.inputValues, inputMarkIndexes.Count);
             for (int i = 0; i < inputMarkIndexes.Count; i++)
             {

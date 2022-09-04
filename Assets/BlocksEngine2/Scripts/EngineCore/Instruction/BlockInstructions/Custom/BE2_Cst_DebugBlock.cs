@@ -6,7 +6,7 @@ using UnityEngine;
 
 
 
-public class BE2_Cst_FromStartEvent : BE2_InstructionBase, I_BE2_Instruction
+public class BE2_Cst_DebugBlock : BE2_InstructionBase, I_BE2_Instruction
 
 {
 
@@ -23,7 +23,8 @@ public class BE2_Cst_FromStartEvent : BE2_InstructionBase, I_BE2_Instruction
     public new void Function()
 
     {
-        Debug.Log("StartBlock");
+        Debug.Log(Section0Inputs[0].StringValue);
+
         // --- use Section0Inputs[inputIndex] to get the Block inputs from the first section (index 0).
 
         // --- Optionally, use GetSectionInputs(sectionIndex)[inputIndex] to get inputs from a different section
@@ -42,11 +43,11 @@ public class BE2_Cst_FromStartEvent : BE2_InstructionBase, I_BE2_Instruction
 
         //ExecuteSection(sectionIndex);
 
-        ExecuteSection(0);
+
 
         // --- execute next block after this, used to finish the execution of this function
 
-        //ExecuteNextInstruction();
+        ExecuteNextInstruction();
 
     }
 
@@ -138,12 +139,13 @@ public class BE2_Cst_FromStartEvent : BE2_InstructionBase, I_BE2_Instruction
 
     // --- executed on button play pressed
 
-    protected override void OnButtonPlay()
+    //protected override void OnButtonPlay()
 
-    {
-        Function();
+    //{
 
-    }
+    //
+
+    //}
 
 
 

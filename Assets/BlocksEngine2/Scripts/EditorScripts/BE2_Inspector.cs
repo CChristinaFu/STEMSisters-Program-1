@@ -232,6 +232,15 @@ public class BE2_Inspector : MonoBehaviour
                     item.GetComponent<InputField>().text = inputValues[inputValuesIndex].TrimEnd(' ').TrimStart(' ');
                     inputValuesIndex++;
                 }
+                else if (items[i] == "$fillin")
+                {
+                    item = Instantiate(InputFieldTemplate, Vector3.zero, Quaternion.identity, header.transform);
+                    InputField inputField = item.GetComponent<InputField>();
+                    inputField.text = inputValues[inputValuesIndex].TrimEnd(' ').TrimStart(' ');
+                    inputField.readOnly = true;
+                    inputField.caretWidth = 0;
+                    inputValuesIndex++;
+                }
                 else if (items[i] == "$dropdown")
                 {
                     item = Instantiate(DropdownTemplate, Vector3.zero, Quaternion.identity, header.transform);
