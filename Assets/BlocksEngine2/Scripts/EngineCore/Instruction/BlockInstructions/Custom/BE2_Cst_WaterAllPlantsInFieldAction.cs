@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BE2_Cst_MakeXControl : BE2_InstructionBase, I_BE2_Instruction
+public class BE2_Cst_WaterAllPlantsInFieldAction : BE2_InstructionBase, I_BE2_Instruction
 {
     // ► Refer to the documentation for more on the variables and methods
 
