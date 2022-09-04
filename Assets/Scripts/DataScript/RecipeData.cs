@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "RecipeData", menuName = "STEMSisters Program 1/RecipeData", order = 0)]
+[CreateAssetMenu(fileName = "RecipeData", menuName = "STEMSisters_Program_1/RecipeData", order = 0)]
 public class RecipeData : ScriptableObject
 {
     public SerializedDictionary<ProductData, int> inputProducts = new();

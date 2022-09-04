@@ -35,7 +35,7 @@ public class BE2_Editor_Inspector : Editor
         EditorGUILayout.LabelField("Block Header Markup");
         EditorGUILayout.HelpBox(
             "Write the header text and inputs in a single line. Additional headers in new lines. \n" +
-            "possible input types are $text or $dropdown."
+            "possible input types are $text, $dropdown, or $range."
             , MessageType.Info);
 
         inspector.blockHeaderMarkup = EditorGUILayout.TextArea(inspector.blockHeaderMarkup, GUILayout.MaxHeight(75));
@@ -43,10 +43,11 @@ public class BE2_Editor_Inspector : Editor
         if (inspector.blockHeaderMarkup != "")
         {
             EditorGUILayout.HelpBox(
-            "Below you can define the text $input default value or $dropdown option values separated by comma."
+            "Below you can define the text $input default value, $dropdown option values separated by comma, or $range options separated with two dots."
             , MessageType.Info);
             List<int> inputMarkIndexes = inspector.AllIndexesOf(inspector.blockHeaderMarkup, "$text");
             inputMarkIndexes.AddRange(inspector.AllIndexesOf(inspector.blockHeaderMarkup, "$dropdown"));
+            inputMarkIndexes.AddRange(inspector.AllIndexesOf(inspector.blockHeaderMarkup, "$range"));
             BE2_ArrayUtils.Resize(ref inspector.inputValues, inputMarkIndexes.Count);
             for (int i = 0; i < inputMarkIndexes.Count; i++)
             {

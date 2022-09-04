@@ -51,7 +51,7 @@ public class BE2_Inspector : MonoBehaviour
     // v2.7 - savedCodesPath variable moved from context menu manager to inspector 
     // v2.6.2 - bugfix: fixed changes on BE2 Inspector paths not perssiting 
     // path variables made not static
-    public string savedCodesPath = "[dataPath]/BlocksEngine2/Saves/"; 
+    public string savedCodesPath = "[dataPath]/BlocksEngine2/Saves/";
 
     // v2.6.1 - bugfix: fixed Camera and Canvas Render Mode resetting  
     // v2.6 - New settings variables added to the BE2_Inspector to be used in the new section, "Scene Settings"
@@ -241,6 +241,43 @@ public class BE2_Inspector : MonoBehaviour
                     {
                         dropdown.options.Add(new Dropdown.OptionData(v.TrimEnd(' ').TrimStart(' ')));
                     }
+                    inputValuesIndex++;
+                }
+                // $range = start..end..step (end-inclusive, start and step are optional, start = 0 and step = 1 by defualt)
+                else if (items[i] == "$range")
+                {
+                    item = Instantiate(DropdownTemplate, Vector3.zero, Quaternion.identity, header.transform);
+                    Dropdown dropdown = item.GetComponent<Dropdown>();
+                    dropdown.options.Clear();
+                    string[] values = inputValues[inputValuesIndex].Split("..");
+                    int start = 0;
+                    int end = 0;
+                    int step = 1;
+                    if (values.Length > 1)
+                    {
+                        int.TryParse(values[0].TrimEnd(' ').TrimStart(' '), out start);
+                        int.TryParse(values[1].TrimEnd(' ').TrimStart(' '), out end);
+                        if (values.Length > 2) int.TryParse(values[2].TrimEnd(' ').TrimStart(' '), out step);
+                    }
+                    for (int j = start; j < end + 1; j += step)
+                    {
+                        dropdown.options.Add(new Dropdown.OptionData(j.ToString()));
+                    }
+                    inputValuesIndex++;
+                }
+                else if (items[i] == "$crop" || items[i] == "$animal" || items[i] == "$recipe")
+                {
+                    ProductVariableKind prodVarKind = items[i] switch
+                    {
+                        "$crop" => ProductVariableKind.CROP,
+                        "$animal" => ProductVariableKind.ANIMAL,
+                        "$recipe" => ProductVariableKind.RECIPE,
+                        _ => throw new InvalidDataException("Impossible string for ProductVarKind")
+                    };
+                    item = Instantiate(DropdownTemplate, Vector3.zero, Quaternion.identity, header.transform);
+                    Dropdown dropdown = item.GetComponent<Dropdown>();
+                    item.AddComponent<DropdownScriptableObjectAssigner>().Initialize(prodVarKind);
+                    dropdown.options.Clear();
                     inputValuesIndex++;
                 }
                 else
