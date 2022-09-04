@@ -5,13 +5,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
 
-public class Interpreter : MonoBehaviour
+public class Interpreter : BE2_TargetObject
 {
     [SerializeField] private SerializedDictionary<ProductVariableKind, ProductData[]> productDictionary = new();
 
     public class UEvent_List_Var : UnityEvent<List<string>> { }
     public UEvent_List_Var OnVariableUpdate = new();
-
 
     public ProductData[] GetProductKind(ProductVariableKind kind)
     {

@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6da1982a99419e4a96e631a83eac4f5, type: 3}
   m_Name: Flowers
   m_EditorClassIdentifier: 
-  cropName: 
-  cropPrice: 1
+  <ProductImage>k__BackingField: {fileID: 0}
+  <ProductPrice>k__BackingField: 1
+  <ProductName>k__BackingField: Flower
   growthLevel: 2
+  witherTimer: 1
   waterconsumption: 2
   WaterRequirements: {x: 0, y: 0}
   GrowthLevelImages: []
+  witherImage: {fileID: 0}

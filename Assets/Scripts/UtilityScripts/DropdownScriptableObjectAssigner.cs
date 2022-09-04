@@ -9,9 +9,10 @@ public class DropdownScriptableObjectAssigner : MonoBehaviour
     [SerializeField] Dropdown dropdown;
     [SerializeField] ProductVariableKind varKind;
 
-    public void Initialize(ProductVariableKind kind)
+    public void Initialize(ProductVariableKind kind, Dropdown item)
     {
         varKind = kind;
+        dropdown = item;
     }
 
     // Start is called before the first frame update
@@ -23,11 +24,12 @@ public class DropdownScriptableObjectAssigner : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    void Start()
     {
         if (FindObjectOfType<Interpreter>() is Interpreter I)
         {
-            dropdown.AddOptions(I.GetProductKind(varKind).Select(product => product.productName).ToList());
+            // For each product we get based on kind, extract name and image and produce a new dropdown option
+            dropdown.AddOptions(I.GetProductKind(varKind).Select(product => new Dropdown.OptionData(product.ProductName, product.ProductImage)).ToList());
         }
     }
 }

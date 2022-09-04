@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 679633e80aaa05e40bf7be3d8ccf2200, type: 3}
   m_Name: Jam Recipe
   m_EditorClassIdentifier: 
+  <ProductImage>k__BackingField: {fileID: 0}
+  <ProductPrice>k__BackingField: 1
+  <ProductName>k__BackingField: Jam
   inputProducts:
     pairs:
     - key: {fileID: 11400000, guid: 05f6ca14442c74d4cb93d323e5859eb4, type: 2}

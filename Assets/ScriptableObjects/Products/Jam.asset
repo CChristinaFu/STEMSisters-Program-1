@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bc014eb1da8db44a616fd3bbc66a68, type: 3}
   m_Name: Jam
   m_EditorClassIdentifier: 
-  productImage: {fileID: 0}
-  productPrice: 4
-  productName: Jam
+  <ProductImage>k__BackingField: {fileID: 0}
+  <ProductPrice>k__BackingField: 1
+  <ProductName>k__BackingField: Jam

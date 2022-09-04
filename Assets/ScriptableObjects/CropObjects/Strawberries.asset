@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6da1982a99419e4a96e631a83eac4f5, type: 3}
   m_Name: Strawberries
   m_EditorClassIdentifier: 
-  productImage: {fileID: 0}
-  productPrice: 1
-  productName: Strawberries
+  <ProductImage>k__BackingField: {fileID: 0}
+  <ProductPrice>k__BackingField: 1
+  <ProductName>k__BackingField: Strawberries
   growthLevel: 2
   witherTimer: 1
   waterconsumption: 2

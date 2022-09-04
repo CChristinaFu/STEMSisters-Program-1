@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RecipeData", menuName = "STEMSisters_Program_1/RecipeData", order = 0)]
-public class RecipeData : ScriptableObject
+public class RecipeData : ProductData
 {
     public SerializedDictionary<ProductData, int> inputProducts = new();
     public ProductData outputProduct;
+    public override Sprite ProductImage { get => outputProduct.ProductImage; protected set { } }
+    public override string ProductName { get => outputProduct.ProductName; protected set { } }
+    public override int ProductPrice { get => outputProduct.ProductPrice; protected set { } }
     public int outputCount = 1;
-    public bool checkEnoughInput(SerializedDictionary<ProductData, int> inputs)
+    public bool CheckEnoughInput(SerializedDictionary<ProductData, int> inputs)
     {
         foreach (var (product, count) in inputProducts)
         {
@@ -21,7 +24,7 @@ public class RecipeData : ScriptableObject
     }
     public int ProduceProducts(SerializedDictionary<ProductData, int> inputs)
     {
-        if (checkEnoughInput(inputs))
+        if (CheckEnoughInput(inputs))
         {
             foreach (var (product, count) in inputProducts)
             {

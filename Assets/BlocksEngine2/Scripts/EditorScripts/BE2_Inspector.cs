@@ -265,18 +265,18 @@ public class BE2_Inspector : MonoBehaviour
                     }
                     inputValuesIndex++;
                 }
-                else if (items[i] == "$crop" || items[i] == "$animal" || items[i] == "$recipe")
+                else if (items[i] == "$crops" || items[i] == "$animals" || items[i] == "$recipes")
                 {
                     ProductVariableKind prodVarKind = items[i] switch
                     {
-                        "$crop" => ProductVariableKind.CROP,
-                        "$animal" => ProductVariableKind.ANIMAL,
-                        "$recipe" => ProductVariableKind.RECIPE,
+                        "$crops" => ProductVariableKind.CROP,
+                        "$animals" => ProductVariableKind.ANIMAL,
+                        "$recipes" => ProductVariableKind.RECIPE,
                         _ => throw new InvalidDataException("Impossible string for ProductVarKind")
                     };
                     item = Instantiate(DropdownTemplate, Vector3.zero, Quaternion.identity, header.transform);
                     Dropdown dropdown = item.GetComponent<Dropdown>();
-                    item.AddComponent<DropdownScriptableObjectAssigner>().Initialize(prodVarKind);
+                    item.AddComponent<DropdownScriptableObjectAssigner>().Initialize(prodVarKind, dropdown);
                     dropdown.options.Clear();
                     inputValuesIndex++;
                 }

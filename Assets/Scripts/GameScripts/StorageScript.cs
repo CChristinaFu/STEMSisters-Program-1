@@ -40,7 +40,7 @@ public class StorageScript : MonoBehaviour
             string storageString = "{\n";
             foreach (var item in storage.Keys)
             {
-                storageString += $"\t{item.productName} (amount = {storage[item]}, price = {item.productPrice}),\n";
+                storageString += $"\t{item.ProductName} (amount = {storage[item]}, price = {item.ProductPrice}),\n";
             }
             storageString += "}";
             OnStorageUpdate.Invoke(storageString);
@@ -95,7 +95,7 @@ public class StorageScript : MonoBehaviour
         int total = 0;
         foreach (var (product, count) in storage)
         {
-            total += product.productPrice * count;
+            total += product.ProductPrice * count;
         }
         ClearStorage();
         market.UpdateMoney(total);
