@@ -6,7 +6,7 @@ using UnityEngine;
 
 
 
-public class BE2_Cst_ListVariable : BE2_InstructionBase, I_BE2_Instruction
+public class BE2_Cst_ListVariableField : BE2_InstructionBase, I_BE2_Instruction
 
 {
 
@@ -23,7 +23,13 @@ public class BE2_Cst_ListVariable : BE2_InstructionBase, I_BE2_Instruction
     public new void Function()
 
     {
-
+        string variableName = Section0Inputs[0].StringValue;
+        string cropName = Section0Inputs[1].StringValue;
+        if (TargetObject is Interpreter i)
+        {
+            i.CreateField(variableName, cropName);
+            Debug.Log("successfully created field");
+        }
         // --- use Section0Inputs[inputIndex] to get the Block inputs from the first section (index 0).
 
         // --- Optionally, use GetSectionInputs(sectionIndex)[inputIndex] to get inputs from a different section
@@ -31,8 +37,7 @@ public class BE2_Cst_ListVariable : BE2_InstructionBase, I_BE2_Instruction
         // --- the input values can be retrieved as .StringValue, .FloatValue or .InputValues 
 
         // Section0Inputs[inputIndex];
-        string variableName = Section0Inputs[0].StringValue;
-        string variableType = Section0Inputs[1].StringValue;
+
 
 
         // ### Stack Pointer Calls ###

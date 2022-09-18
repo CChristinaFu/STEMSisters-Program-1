@@ -141,7 +141,7 @@ public class BE2_Cst_FromStartEvent : BE2_InstructionBase, I_BE2_Instruction
     protected override void OnButtonPlay()
 
     {
-        Function();
+        BlocksStack.IsActive = true;
 
     }
 

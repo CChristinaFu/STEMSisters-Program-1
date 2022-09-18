@@ -221,10 +221,12 @@ public class BE2_Inspector : MonoBehaviour
                 tempString += headersMarkup[h][i];
             }
             items.Add(tempString);
-
+            //Debug.Log(items.Count);
             // ### create header items ###
             for (int i = 0; i < items.Count; i++)
             {
+                Debug.Log(items[i]);
+                Debug.Log(inputValues[inputValuesIndex]);
                 GameObject item = null;
                 if (items[i] == "$text")
                 {
@@ -288,7 +290,7 @@ public class BE2_Inspector : MonoBehaviour
                     Dropdown dropdown = item.GetComponent<Dropdown>();
                     item.AddComponent<DropdownScriptableObjectAssigner>().Initialize(prodVarKind, dropdown);
                     dropdown.options.Clear();
-                    inputValuesIndex++;
+                    //inputValuesIndex++;
                 }
                 else
                 {

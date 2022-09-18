@@ -14,7 +14,7 @@ public class BE2_Editor_Inspector : Editor
         inspector = (BE2_Inspector)target;
 
         if (inspector.inputValues == null)
-            inspector.inputValues = new string[0];
+            inspector.inputValues = new string[1] { "" };
     }
 
     bool tryAddInstruction = false;

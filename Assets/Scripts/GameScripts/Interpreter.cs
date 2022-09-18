@@ -41,14 +41,21 @@ public class Interpreter : BE2_TargetObject
         return new ProductData[0];
     }
 
-    public int CreateField(string fieldName, CropData crop)
+    public bool CreateField(string fieldName, string cropName)
     {
         // FIXME: Field should be placed by user
-        GameObject newField = Instantiate(fieldPrefab);
-        FieldSystem fieldSystem = newField.GetComponent<FieldSystem>();
-        fieldSystem.SetFieldCrop(crop);
-        Fields.Add(fieldName, fieldSystem);
-        return Fields.Count;
+
+        if (productDictionary.TryGetValue(ProductVariableKind.CROP, out var crops)
+        && System.Array.Find(crops, (x) => x.ProductName == cropName) is CropData crop)
+        {
+            GameObject newField = Instantiate(fieldPrefab);
+            FieldSystem fieldSystem = newField.GetComponent<FieldSystem>();
+            fieldSystem.SetFieldCrop(crop);
+            Fields.Add(fieldName, fieldSystem);
+            return true;
+        }
+        return false;
+
     }
 
     public FieldSystem GetField(string fieldName)
