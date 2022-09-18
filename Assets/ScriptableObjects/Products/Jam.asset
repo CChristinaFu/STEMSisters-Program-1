@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Jam
   m_EditorClassIdentifier: 
   <ProductImage>k__BackingField: {fileID: 0}
-  <ProductPrice>k__BackingField: 1
+  <ProductPrice>k__BackingField: 2
   <ProductName>k__BackingField: Jam
