@@ -274,13 +274,14 @@ public class BE2_Inspector : MonoBehaviour
                     }
                     inputValuesIndex++;
                 }
-                else if (items[i] == "$crops" || items[i] == "$animals" || items[i] == "$recipes")
+                else if (items[i] == "$crops" || items[i] == "$animals" || items[i] == "$recipes" || items[i] == "$products")
                 {
                     ProductVariableKind prodVarKind = items[i] switch
                     {
                         "$crops" => ProductVariableKind.CROP,
                         "$animals" => ProductVariableKind.ANIMAL,
                         "$recipes" => ProductVariableKind.RECIPE,
+                        "$products" => ProductVariableKind.ALL_PRODUCTS,
                         _ => throw new InvalidDataException("Impossible string for ProductVarKind")
                     };
                     item = Instantiate(DropdownTemplate, Vector3.zero, Quaternion.identity, header.transform);

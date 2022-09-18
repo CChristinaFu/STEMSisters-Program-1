@@ -44,16 +44,15 @@ public class ShowFieldCrop : MonoBehaviour
         {
             var crop = field.GetFieldCrop(i);
             SpriteRenderer spriteRenderer = transform.GetChild(i).GetComponent<SpriteRenderer>();
-            if (crop != null && crop.CropID >= 0 && crop.CropID < field.Crops.Count && spriteRenderer != null)
+            if (crop != null && spriteRenderer != null)
             {
-                CropData cropData = field.Crops[crop.CropID];
                 if (!crop.IsWithered)
                 {
-                    spriteRenderer.sprite = cropData.GrowthLevelImages[crop.currentGrowthLevel];
+                    spriteRenderer.sprite = field.CropData.GrowthLevelImages[crop.currentGrowthLevel];
                 }
                 else
                 {
-                    spriteRenderer.sprite = cropData.witherImage;
+                    spriteRenderer.sprite = field.CropData.witherImage;
                 }
             }
             else

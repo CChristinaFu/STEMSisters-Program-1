@@ -5,8 +5,9 @@ using UnityEngine.Events;
 
 public class FieldSystem : MonoBehaviour
 {
-    [EditorButton(nameof(GrowthUpdate))]
-    public List<CropData> Crops;
+    [field: EditorButton(nameof(GrowthUpdate))]
+    [field: SerializeField]
+    public CropData CropData { get; private set; }
     [SerializeField] Vector2Int GridSize = new(3, 3);
     public Vector2Int GetGridSize => GridSize;
     [EditorButton(nameof(RandomizeField))]
@@ -27,10 +28,9 @@ public class FieldSystem : MonoBehaviour
     {
         foreach (var crop in subField)
         {
-            if (crop != null && crop.CropID >= 0 && crop.CropID < Crops.Count)
+            if (crop != null)
             {
-                var currentCrop = Crops[crop.CropID];
-                if (crop.currentGrowthLevel < currentCrop.growthLevel)
+                if (crop.currentGrowthLevel < CropData.growthLevel)
                 {
                     crop.currentGrowthLevel++;
                 }
@@ -51,10 +51,9 @@ public class FieldSystem : MonoBehaviour
         float runningTotal = 0;
         foreach (var crop in subField)
         {
-            if (crop != null && crop.CropID < Crops.Count)
+            if (crop != null)
             {
-                var currentCrop = Crops[crop.CropID];
-                runningTotal += currentCrop.waterconsumption;
+                runningTotal += CropData.waterconsumption;
             }
         }
         return runningTotal;
@@ -66,20 +65,39 @@ public class FieldSystem : MonoBehaviour
         //Q3: How do we calculate if daily water requirements are met?
         OnFieldUpdate.Invoke();
     }
-    public bool PlantSeed(int CropIDToPlant, int location)
+    public bool SetFieldCrop(CropData data)
+    {
+
+        return true;
+    }
+
+    public bool PlantSeed(int location)
     {
         //check if field is empty
         location = Mathf.Clamp(location, 0, subField.Length - 1);
         subField[location] = new()
         {
-            CropID = CropIDToPlant,
             currentGrowthLevel = 0,
-            witherTimer = Crops[CropIDToPlant].witherTimer,
+            witherTimer = CropData.witherTimer,
             waterAmount = 0,
         };
         OnFieldUpdate.Invoke();
         return true;
     }
+
+    public bool PlantFirstAvailableSeed()
+    {
+        for (int i = 0; i < subField.Length; i++)
+        {
+            if (subField[i] == null)
+            {
+                PlantSeed(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public bool DiscardCrop(int location)
     {
         if (subField == null) return false;
@@ -97,14 +115,28 @@ public class FieldSystem : MonoBehaviour
         if (currentCrop != null
         && !currentCrop.IsWithered
         && currentCrop.currentGrowthLevel
-        == Crops[currentCrop.CropID].growthLevel)
+        == CropData.growthLevel)
         {
-            crop = Crops[currentCrop.CropID];
+            crop = CropData;
             return DiscardCrop(location);
         }
         OnFieldUpdate.Invoke();
         return false;
     }
+
+    public bool TryHarvestFirstAvailableCrop(out CropData crop)
+    {
+        crop = null;
+        for (int i = 0; i < subField.Length; i++)
+        {
+            if (subField[i] != null && TryHarvestCrop(i, out crop))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<CropData> HarvestAllCrops()
     {
         List<CropData> HarvestedCrops = new();
@@ -122,7 +154,7 @@ public class FieldSystem : MonoBehaviour
         subField = new FieldCrop[GridSize.x * GridSize.y];
         for (int i = 0; i < subField.Length; i++)
         {
-            PlantSeed(Random.Range(0, Crops.Count), i);
+            PlantSeed(i);
         }
     }
 
@@ -134,13 +166,12 @@ public class FieldSystem : MonoBehaviour
         }
     }
 
-    public void PlantAll(int cropID)
+    public void PlantAll()
     {
-        cropID = Mathf.Clamp(cropID, 0, Crops.Count - 1);
         subField = new FieldCrop[GridSize.x * GridSize.y];
         for (int i = 0; i < subField.Length; i++)
         {
-            PlantSeed(cropID, i);
+            PlantSeed(i);
         }
     }
 
@@ -164,7 +195,7 @@ public class FieldSystem : MonoBehaviour
 [System.Serializable]
 public class FieldCrop
 {
-    public int CropID = -1;
+    // public int CropID = -1;
     public int currentGrowthLevel = -1;
     public int witherTimer = -1;
     public float waterAmount = -1;

@@ -47,6 +47,23 @@ public class StorageScript : MonoBehaviour
         }
     }
 
+    public bool HarvestCropFromField(FieldSystem field)
+    {
+        if (field.TryHarvestFirstAvailableCrop(out var crop))
+        {
+            if (storage.ContainsKey(crop))
+            {
+                storage[crop] += 1;
+            }
+            else
+            {
+                storage[crop] = 1;
+            }
+            return true;
+        }
+        return false;
+    }
+
     public bool MoveToStorage(FieldSystem field)
     {
         bool hasHarvested = false;
