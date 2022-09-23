@@ -225,8 +225,6 @@ public class BE2_Inspector : MonoBehaviour
             // ### create header items ###
             for (int i = 0; i < items.Count; i++)
             {
-                Debug.Log(items[i]);
-                Debug.Log(inputValues[inputValuesIndex]);
                 GameObject item = null;
                 if (items[i] == "$text")
                 {

@@ -36,7 +36,7 @@ public class BE2_Editor_Inspector : Editor
         EditorGUILayout.HelpBox(
             "Write the header text and inputs in a single line. Additional headers in new lines. \n" +
             "Possible input types are $fillin, $text, $dropdown, or $range. \n" +
-            "Also predefined dropdown for $crops, $animals, and $recipes."
+            "Also predefined dropdown for $crops, $animals, $recipes, $products."
             , MessageType.Info);
 
         inspector.blockHeaderMarkup = EditorGUILayout.TextArea(inspector.blockHeaderMarkup, GUILayout.MaxHeight(75));
