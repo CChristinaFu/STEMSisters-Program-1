@@ -822,8 +822,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090d453d245fb724eb53f2003f99f591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Crops:
-  - {fileID: 11400000, guid: 6f65701dcfa667841aba13c8ac27ed7f, type: 2}
+  <CropData>k__BackingField: {fileID: 11400000, guid: 6f65701dcfa667841aba13c8ac27ed7f,
+    type: 2}
   GridSize: {x: 3, y: 3}
   subField: []
   OnFieldUpdate:
@@ -1077,60 +1077,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090d453d245fb724eb53f2003f99f591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Crops:
-  - {fileID: 11400000, guid: 05f6ca14442c74d4cb93d323e5859eb4, type: 2}
+  <CropData>k__BackingField: {fileID: 11400000, guid: 05f6ca14442c74d4cb93d323e5859eb4,
+    type: 2}
   GridSize: {x: 3, y: 3}
   subField:
-  - CropID: 0
-    currentGrowthLevel: 0
+  - currentGrowthLevel: 0
     witherTimer: 1
     waterAmount: 0
     waterStatus: 0
     IsWithered: 0
-  - CropID: 0
-    currentGrowthLevel: 0
+  - currentGrowthLevel: 0
     witherTimer: 1
     waterAmount: 0
     waterStatus: 0
     IsWithered: 0
-  - CropID: 0
-    currentGrowthLevel: 0
+  - currentGrowthLevel: 0
     witherTimer: 1
     waterAmount: 0
     waterStatus: 0
     IsWithered: 0
-  - CropID: 0
-    currentGrowthLevel: 0
+  - currentGrowthLevel: 0
     witherTimer: 1
     waterAmount: 0
     waterStatus: 0
     IsWithered: 0
-  - CropID: 0
-    currentGrowthLevel: 0
+  - currentGrowthLevel: 0
     witherTimer: 1
     waterAmount: 0
     waterStatus: 0
     IsWithered: 0
-  - CropID: 0
-    currentGrowthLevel: 0
+  - currentGrowthLevel: 0
     witherTimer: 1
     waterAmount: 0
     waterStatus: 0
     IsWithered: 0
-  - CropID: 0
-    currentGrowthLevel: 0
+  - currentGrowthLevel: 0
     witherTimer: 1
     waterAmount: 0
     waterStatus: 0
     IsWithered: 0
-  - CropID: 0
-    currentGrowthLevel: 0
+  - currentGrowthLevel: 0
     witherTimer: 1
     waterAmount: 0
     waterStatus: 0
     IsWithered: 0
-  - CropID: 0
-    currentGrowthLevel: 0
+  - currentGrowthLevel: 0
     witherTimer: 1
     waterAmount: 0
     waterStatus: 0
@@ -1784,61 +1775,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090d453d245fb724eb53f2003f99f591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Crops:
-  - {fileID: 11400000, guid: 05f6ca14442c74d4cb93d323e5859eb4, type: 2}
-  - {fileID: 11400000, guid: 6f65701dcfa667841aba13c8ac27ed7f, type: 2}
+  <CropData>k__BackingField: {fileID: 0}
   GridSize: {x: 3, y: 3}
   subField:
-  - CropID: -1
-    currentGrowthLevel: -1
+  - currentGrowthLevel: -1
     witherTimer: -1
     waterAmount: -1
     waterStatus: 0
     IsWithered: 0
-  - CropID: -1
-    currentGrowthLevel: -1
+  - currentGrowthLevel: -1
     witherTimer: -1
     waterAmount: -1
     waterStatus: 0
     IsWithered: 0
-  - CropID: -1
-    currentGrowthLevel: -1
+  - currentGrowthLevel: -1
     witherTimer: -1
     waterAmount: -1
     waterStatus: 0
     IsWithered: 0
-  - CropID: -1
-    currentGrowthLevel: -1
+  - currentGrowthLevel: -1
     witherTimer: -1
     waterAmount: -1
     waterStatus: 0
     IsWithered: 0
-  - CropID: -1
-    currentGrowthLevel: -1
+  - currentGrowthLevel: -1
     witherTimer: -1
     waterAmount: -1
     waterStatus: 0
     IsWithered: 0
-  - CropID: -1
-    currentGrowthLevel: -1
+  - currentGrowthLevel: -1
     witherTimer: -1
     waterAmount: -1
     waterStatus: 0
     IsWithered: 0
-  - CropID: -1
-    currentGrowthLevel: -1
+  - currentGrowthLevel: -1
     witherTimer: -1
     waterAmount: -1
     waterStatus: 0
     IsWithered: 0
-  - CropID: -1
-    currentGrowthLevel: -1
+  - currentGrowthLevel: -1
     witherTimer: -1
     waterAmount: -1
     waterStatus: 0
     IsWithered: 0
-  - CropID: -1
-    currentGrowthLevel: -1
+  - currentGrowthLevel: -1
     witherTimer: -1
     waterAmount: -1
     waterStatus: 0
@@ -5092,7 +5072,7 @@ PrefabInstance:
     - target: {fileID: 1305054108956161307, guid: 43df09e34b8db430c940cb623335d270,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1305054108956161307, guid: 43df09e34b8db430c940cb623335d270,
         type: 3}
@@ -5659,7 +5639,7 @@ PrefabInstance:
     - target: {fileID: 1305054108956161307, guid: 43df09e34b8db430c940cb623335d270,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1305054108956161307, guid: 43df09e34b8db430c940cb623335d270,
         type: 3}

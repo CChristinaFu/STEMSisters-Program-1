@@ -105,7 +105,31 @@ public class Interpreter : BE2_TargetObject
         }
         return new InterpreterError($"No Field found with name {fieldName}");
     }
+    public InterpreterError? MakeXAction(string recipeName)
+    {
+        if (productDictionary.TryGetValue(ProductVariableKind.RECIPE, out var recipeList))
+        {
+            if (System.Array.Find(recipeList, match: (x) => x.ProductName == recipeName) is RecipeData RD)
+            {
+                Storage.CreateNewProduct(RD);
+                return null;
+            }
+        }
+        return new InterpreterError("sum error occured");
 
+    }
+    public InterpreterError? SellXAction(string productName)
+    {
+        foreach (var products in productDictionary.Values)
+        {
+            if (System.Array.Find(products, match: (x) => x.ProductName == productName) is ProductData PD)
+            {
+                Storage.SellProduct(PD);
+                return null;
+            }
+        }
+        return new InterpreterError("sum error occured");
+    }
     # endregion
 }
 
