@@ -21,6 +21,8 @@ public static class BE2_BlockUtils
         {
             foreach (BE2_BlockSectionHeader header in blockTransform.GetComponentsInChildren<BE2_BlockSectionHeader>())
             {
+                var hdl = header.GetComponent<UnityEngine.UI.HorizontalLayoutGroup>();
+                hdl.padding.right = hdl.padding.left;
                 header.gameObject.AddComponent<UnityEngine.UI.ContentSizeFitter>().horizontalFit = UnityEngine.UI.ContentSizeFitter.FitMode.MinSize;
             }
         }

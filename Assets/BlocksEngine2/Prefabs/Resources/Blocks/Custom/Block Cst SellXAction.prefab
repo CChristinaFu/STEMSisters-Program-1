@@ -426,6 +426,7 @@ GameObject:
   - component: {fileID: 3807898492250216465}
   - component: {fileID: 229815082022122986}
   - component: {fileID: 118994419965886910}
+  - component: {fileID: 6256278945138926036}
   m_Layer: 5
   m_Name: Template Dropdown(Clone)
   m_TagString: Untagged
@@ -542,13 +543,7 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: x
-      m_Image: {fileID: 0}
-    - m_Text: y
-      m_Image: {fileID: 0}
-    - m_Text: z
-      m_Image: {fileID: 0}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -593,6 +588,20 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0.7924528, b: 0.072243445, a: 1}
   m_EffectDistance: {x: 5, y: 3}
   m_UseGraphicAlpha: 1
+--- !u!114 &6256278945138926036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778170726068688766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1943a9a298d9b4da7948f2ac357b57c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropdown: {fileID: 6275752720957917799}
+  varKind: 4
 --- !u!1 &1565723546297057180
 GameObject:
   m_ObjectHideFlags: 0
@@ -1528,7 +1537,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: x
+  m_Text: 
 --- !u!1 &8329966672917184428
 GameObject:
   m_ObjectHideFlags: 0
