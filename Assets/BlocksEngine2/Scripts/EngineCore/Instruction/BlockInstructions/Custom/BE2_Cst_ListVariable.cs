@@ -33,8 +33,11 @@ public class BE2_Cst_ListVariable : BE2_InstructionBase, I_BE2_Instruction
         // Section0Inputs[inputIndex];
         string variableName = Section0Inputs[0].StringValue;
         string variableType = Section0Inputs[1].StringValue;
-
-
+        Debug.Log($"Variable {variableName} has type: {variableType}");
+        if (TargetObject is Interpreter i)
+        {
+            Debug.Log("Creating Field");
+        }
         // ### Stack Pointer Calls ###
 
 

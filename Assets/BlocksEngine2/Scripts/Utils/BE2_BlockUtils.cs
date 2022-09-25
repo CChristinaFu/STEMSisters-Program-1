@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class BE2_BlockUtils
 {
-    public static void RemoveEngineComponents(Transform blockTransform)
+    public static void RemoveEngineComponents(Transform blockTransform, bool addContentSizeFitterToHeader = false)
     {
         I_BE2_BlockSectionHeaderItem[] headerItems = blockTransform.GetComponentsInChildren<I_BE2_BlockSectionHeaderItem>();
         for (int i = headerItems.Length - 1; i >= 0; i--) MonoBehaviour.DestroyImmediate(headerItems[i] as MonoBehaviour);
@@ -15,6 +15,15 @@ public static class BE2_BlockUtils
 
         I_BE2_BlockSectionBody[] bodies = blockTransform.GetComponentsInChildren<I_BE2_BlockSectionBody>();
         for (int i = bodies.Length - 1; i >= 0; i--) MonoBehaviour.DestroyImmediate(bodies[i] as MonoBehaviour);
+
+        // Change header to resize based on children before removing section header
+        if (addContentSizeFitterToHeader)
+        {
+            foreach (BE2_BlockSectionHeader header in blockTransform.GetComponentsInChildren<BE2_BlockSectionHeader>())
+            {
+                header.gameObject.AddComponent<UnityEngine.UI.ContentSizeFitter>().horizontalFit = UnityEngine.UI.ContentSizeFitter.FitMode.MinSize;
+            }
+        }
 
         I_BE2_BlockSectionHeader[] headers = blockTransform.GetComponentsInChildren<I_BE2_BlockSectionHeader>();
         for (int i = headers.Length - 1; i >= 0; i--) MonoBehaviour.DestroyImmediate(headers[i] as MonoBehaviour);

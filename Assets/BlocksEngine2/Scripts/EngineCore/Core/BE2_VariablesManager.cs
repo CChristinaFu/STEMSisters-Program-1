@@ -109,18 +109,18 @@ public class BE2_VariablesManager : MonoBehaviour
             return 0;
     }
 
-    public int[] GetVariableArrayValue(string variable)
-    {
-        if (variablesList.TryGetValue(variable, out var arrayAsString))
-        {
-            if (arrayAsString.StartsWith("\t\t"))
-            {
-                return System.Array.ConvertAll(arrayAsString.TrimStart('\t').Split("\t"), str => int.TryParse(str, out var val) ? val : 0);
-            }
-        }
-        // Otherwise, return empty array/list
-        return new int[0];
-    }
+    // public int[] GetVariableArrayValue(string variable)
+    // {
+    //     if (variablesList.TryGetValue(variable, out var arrayAsString))
+    //     {
+    //         if (arrayAsString.StartsWith("\t\t"))
+    //         {
+    //             return System.Array.ConvertAll(arrayAsString.TrimStart('\t').Split("\t"), str => int.TryParse(str, out var val) ? val : 0);
+    //         }
+    //     }
+    //     // Otherwise, return empty array/list
+    //     return new int[0];
+    // }
 
     public BE2_InputValues GetVariableValues(string variable)
     {

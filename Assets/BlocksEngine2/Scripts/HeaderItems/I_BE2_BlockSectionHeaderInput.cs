@@ -31,4 +31,5 @@ public class BE2_InputValues
         this.stringValue = stringValue;
         this.floatValue = floatValue;
     }
+    public bool BoolValue => isText ? !(stringValue == "false" || stringValue == "" || stringValue == "0") : floatValue != 0;
 }

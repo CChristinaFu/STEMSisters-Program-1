@@ -274,12 +274,13 @@ public class BE2_Inspector : MonoBehaviour
                     }
                     inputValuesIndex++;
                 }
-                else if (items[i] == "$crops" || items[i] == "$animals" || items[i] == "$recipes" || items[i] == "$products")
+                else if (items[i] == "$crops" || items[i] == "$animals" || items[i] == "$raw" || items[i] == "$recipes" || items[i] == "$products")
                 {
                     ProductVariableKind prodVarKind = items[i] switch
                     {
                         "$crops" => ProductVariableKind.CROP,
                         "$animals" => ProductVariableKind.ANIMAL,
+                        "$raw" => ProductVariableKind.AGRICULTURAL,
                         "$recipes" => ProductVariableKind.RECIPE,
                         "$products" => ProductVariableKind.ALL_PRODUCTS,
                         _ => throw new InvalidDataException("Impossible string for ProductVarKind")
