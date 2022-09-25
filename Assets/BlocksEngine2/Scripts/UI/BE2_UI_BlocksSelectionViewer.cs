@@ -63,7 +63,7 @@ public class BE2_UI_BlocksSelectionViewer : MonoBehaviour
         Transform blockCopy = Instantiate(blockTransform, Vector3.zero, Quaternion.identity, selectionPanel.transform);
         blockCopy.name = blockCopy.name.Replace("(Clone)", "");
 
-        BE2_BlockUtils.RemoveEngineComponents(blockCopy);
+        BE2_BlockUtils.RemoveEngineComponents(blockCopy, addContentSizeFitterToHeader: true);
         BE2_BlockUtils.AddSelectionMenuComponents(blockCopy);
         Debug.Log("+ Block added to selection menu");
 

@@ -36,7 +36,7 @@ public class BE2_Editor_Inspector : Editor
         EditorGUILayout.HelpBox(
             "Write the header text and inputs in a single line. Additional headers in new lines. \n" +
             "Possible input types are $fillin, $text, $dropdown, or $range. \n" +
-            "Also predefined dropdown for $crops, $animals, $recipes, $products."
+            "Also predefined dropdown for $crops, $animals, $raw, $recipes, $products."
             , MessageType.Info);
 
         inspector.blockHeaderMarkup = EditorGUILayout.TextArea(inspector.blockHeaderMarkup, GUILayout.MaxHeight(75));
@@ -53,8 +53,18 @@ public class BE2_Editor_Inspector : Editor
             BE2_ArrayUtils.Resize(ref inspector.inputValues, inputMarkIndexes.Count);
             for (int i = 0; i < inputMarkIndexes.Count; i++)
             {
-                inspector.inputValues[i] = EditorGUILayout.TextField("$input " + i, inspector.inputValues[i]);
+                string currentInputValue = inspector.inputValues[i] is null ? "" : inspector.inputValues[i];
+                inspector.inputValues[i] = EditorGUILayout.TextField("$input " + i, currentInputValue);
             }
+            EditorGUILayout.HelpBox(
+            "Below lets you see how many uses of predefined dropdowns there are."
+            , MessageType.Info);
+            EditorGUILayout.LabelField($"crops only = {inspector.AllIndexesOf(inspector.blockHeaderMarkup, "$crops").Count}");
+            EditorGUILayout.LabelField($"animals only = {inspector.AllIndexesOf(inspector.blockHeaderMarkup, "$animals").Count}");
+            EditorGUILayout.LabelField($"raw products = {inspector.AllIndexesOf(inspector.blockHeaderMarkup, "$raw").Count}");
+            EditorGUILayout.LabelField($"recipes only = {inspector.AllIndexesOf(inspector.blockHeaderMarkup, "$recipes").Count}");
+            EditorGUILayout.LabelField($"any products = {inspector.AllIndexesOf(inspector.blockHeaderMarkup, "$products").Count}");
+
         }
 
         if (GUILayout.Button("Build Block"))
