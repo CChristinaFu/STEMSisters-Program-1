@@ -56,7 +56,7 @@ public class BE2_Raycaster : MonoBehaviour, I_BE2_Raycaster
     public I_BE2_Drag GetDragAtPosition(Vector2 position)
     {
         _pointerEventData = new PointerEventData(eventSystem);
-        
+
         // v2.6 - Raycaster ray position adjusted base on the Canvas render mode
         if (BE2_Inspector.Instance.CanvasRenderMode == RenderMode.ScreenSpaceOverlay)
         {
@@ -146,7 +146,7 @@ public class BE2_Raycaster : MonoBehaviour, I_BE2_Raycaster
                 // v2.4 - added programming env check to the BE2_Raycaster to verify if the block is placed in a visible or hidden environment 
                 I_BE2_ProgrammingEnv programmingEnv = d.Transform.GetComponentInParent<BE2_ProgrammingEnv>();
 
-                if (d != drag && !drag.ChildBlocks.Contains(d.Block) && programmingEnv.Visible)
+                if (d != drag && !drag.ChildBlocks.Contains(d.Block) && programmingEnv != null && programmingEnv.Visible)
                 {
                     float distance = Vector2.Distance(drag.RayPoint, spot.DropPosition);
                     if (distance < minDistance && distance <= maxDistance)

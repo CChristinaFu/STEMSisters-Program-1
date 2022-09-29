@@ -108,6 +108,31 @@ public class StorageScript : MonoBehaviour
         StorageHasUpdated();
         return true;
     }
+    public bool SellProduct(ProductData product)
+    {
+        if (storage.TryGetValue(product, out var count))
+        {
+            if (count == 1)
+            {
+                storage.Remove(product);
+                market.UpdateMoney(product.ProductPrice);
+                return true;
+            }
+            else if (count > 1)
+            {
+                storage[product]--;
+                market.UpdateMoney(product.ProductPrice);
+                return true;
+            }
+            else
+            {
+                storage.Remove(product);
+                return false;
+            }
+        }
+        return false;
+    }
+
     public void ClearStorage()
     {
         storage.Clear();

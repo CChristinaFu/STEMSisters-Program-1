@@ -52,7 +52,7 @@ public class BE2_UI_NewVariablePanel : MonoBehaviour
         BE2_Text newVarName = BE2_Text.GetBE2Text(newVarPanel.GetChild(0).GetChild(0).GetChild(0).GetChild(0));
         newVarName.text = varName;
 
-        BE2_VariablesManager.instance.AddOrUpdateVariable(varName, "0");
+        BE2_VariablesManager.instance.AddOrUpdateVariable(varName, varName);
 
         newVarPanel.GetComponent<BE2_UI_VariableViewer>().RefreshViewer();
     }

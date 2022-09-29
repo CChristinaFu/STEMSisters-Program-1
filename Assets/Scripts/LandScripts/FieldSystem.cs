@@ -67,7 +67,7 @@ public class FieldSystem : MonoBehaviour
     }
     public bool SetFieldCrop(CropData data)
     {
-
+        CropData = data;
         return true;
     }
 
