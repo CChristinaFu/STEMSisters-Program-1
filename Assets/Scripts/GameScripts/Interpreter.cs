@@ -19,7 +19,7 @@ public class Interpreter : BE2_TargetObject
     [field: SerializeField]
     public MoneySystem Money { get; private set; }
     [field: SerializeField]
-    public Dictionary<string, FieldSystem> Fields { get; private set; }
+    public Dictionary<string, FieldSystem> Fields { get; private set; } = new();
 
 
     public class UEvent_List_Var : UnityEvent<List<string>> { }
@@ -52,14 +52,13 @@ public class Interpreter : BE2_TargetObject
     public bool CreateField(string fieldName, string cropName)
     {
         // FIXME: Field should be placed by user
-
+        GameObject newField = Instantiate(fieldPrefab, Vector3.right * Fields.Count * tempFieldSpacing, Quaternion.identity);
+        FieldSystem fieldSystem = newField.GetComponent<FieldSystem>();
+        Fields.Add(fieldName, fieldSystem);
         if (productDictionary.TryGetValue(ProductVariableKind.CROP, out var crops)
         && System.Array.Find(crops, (x) => x.ProductName == cropName) is CropData crop)
         {
-            GameObject newField = Instantiate(fieldPrefab, Vector3.right * Fields.Count * tempFieldSpacing, Quaternion.identity);
-            FieldSystem fieldSystem = newField.GetComponent<FieldSystem>();
             fieldSystem.SetFieldCrop(crop);
-            Fields.Add(fieldName, fieldSystem);
             return true;
         }
         return false;
@@ -90,6 +89,10 @@ public class Interpreter : BE2_TargetObject
     {
         if (Fields.TryGetValue(fieldName, out var field))
         {
+            if (field.CropData == null)
+            {
+                field.SetFieldCrop(crop);
+            }
             if (field.CropData == crop)
             {
                 if (field.PlantFirstAvailableSeed()) return NO_ERROR;
@@ -98,6 +101,15 @@ public class Interpreter : BE2_TargetObject
             return new InterpreterError($"Field has different crop than provided: expected {field.CropData}, got {crop}");
         }
         return new InterpreterError($"No Field found with name {fieldName}");
+    }
+
+    public InterpreterError? PlaceItemInList(string cropName, string fieldName)
+    {
+        if (productDictionary.TryGetValue(ProductVariableKind.CROP, out var crops) && System.Array.Find(crops, (x) => x.ProductName == cropName) is CropData crop)
+        {
+            return PlaceItemInList(crop, fieldName);
+        }
+        return new InterpreterError($"No crop found with name {cropName}");
     }
 
     public InterpreterError? WaterAllPlants(string fieldName)
@@ -125,6 +137,15 @@ public class Interpreter : BE2_TargetObject
             return new InterpreterError($"Field has different crop than provided: expected {field.CropData}, got {crop}");
         }
         return new InterpreterError($"No Field found with name {fieldName}");
+    }
+
+    public InterpreterError? HarvestItemInList(string cropName, string fieldName)
+    {
+        if (productDictionary.TryGetValue(ProductVariableKind.CROP, out var crops) && System.Array.Find(crops, (x) => x.ProductName == cropName) is CropData crop)
+        {
+            return HarvestItemInList(crop, fieldName);
+        }
+        return new InterpreterError($"No crop found with name {cropName}");
     }
 
     public InterpreterError? DiscardAllItems(string listName)
