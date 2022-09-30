@@ -20,6 +20,14 @@ public class Interpreter : BE2_TargetObject
     public MoneySystem Money { get; private set; }
     [field: SerializeField]
     public Dictionary<string, FieldSystem> Fields { get; private set; } = new();
+    public void ResetField() { 
+        foreach (var f in Fields.Values)
+        {
+            Destroy(f.gameObject);
+        }
+
+        Fields.Clear(); 
+    }
 
 
     public class UEvent_List_Var : UnityEvent<List<string>> { }
