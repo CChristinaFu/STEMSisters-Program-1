@@ -31,10 +31,15 @@ public class BE2_Cst_MakeXAction : BE2_InstructionBase, I_BE2_Instruction
         // --- the input values can be retrieved as .StringValue, .FloatValue or .InputValues 
 
         // Section0Inputs[inputIndex];
+        string recipe = Section0Inputs[0].StringValue;
+
         if (TargetObject is Interpreter i)
         {
-            i.MakeXAction(Section0Inputs[0].StringValue);
-            Debug.Log("executed make action");
+            var error = i.MakeXAction(recipe);
+            if (error.HasValue)
+            {
+                Debug.LogError(error.Value.message);
+            }
         }
 
 

@@ -59,6 +59,7 @@ public class StorageScript : MonoBehaviour
             {
                 storage[crop] = 1;
             }
+            StorageHasUpdated();
             return true;
         }
         return false;

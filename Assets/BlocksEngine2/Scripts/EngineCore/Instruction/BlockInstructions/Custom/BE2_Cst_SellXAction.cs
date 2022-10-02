@@ -31,12 +31,17 @@ public class BE2_Cst_SellXAction : BE2_InstructionBase, I_BE2_Instruction
         // --- the input values can be retrieved as .StringValue, .FloatValue or .InputValues 
 
         // Section0Inputs[inputIndex];
+        string product = Section0Inputs[0].StringValue;
 
         if (TargetObject is Interpreter i)
         {
-            i.SellXAction(Section0Inputs[0].StringValue);
-            Debug.Log("executed sell action");
+            var error = i.SellXAction(product);
+            if (error.HasValue)
+            {
+                Debug.LogError(error.Value.message);
+            }
         }
+
 
         // ### Stack Pointer Calls ###
 

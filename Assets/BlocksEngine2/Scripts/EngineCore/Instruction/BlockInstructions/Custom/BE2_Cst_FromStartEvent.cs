@@ -36,7 +36,10 @@ public class BE2_Cst_FromStartEvent : BE2_InstructionBase, I_BE2_Instruction
 
         // ### Stack Pointer Calls ###
 
-
+        if (TargetObject is Interpreter i)
+        {
+            i.ResetField();
+        }
 
         // --- execute first block inside the indicated section, used to execute blocks inside this block (ex. if, if/else, repeat)
 
