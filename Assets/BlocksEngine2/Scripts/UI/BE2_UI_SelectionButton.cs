@@ -51,7 +51,7 @@ public class BE2_UI_SelectionButton : MonoBehaviour
                 else
                     panel.gameObject.SetActive(false);
             }
-            else
+            else if (panel.CompareTag(tag: "DoNotIgnore"))
             {
                 panel.gameObject.SetActive(true);
             }

@@ -31,5 +31,9 @@ public class DropdownScriptableObjectAssigner : MonoBehaviour
             // For each product we get based on kind, extract name and image and produce a new dropdown option
             dropdown.AddOptions(I.GetProductKind(varKind).Select(product => new Dropdown.OptionData(product.ProductName, product.ProductImage)).ToList());
         }
+        if (GetComponent<BE2_DropdownDynamicResize>() is BE2_DropdownDynamicResize Resize)
+        {
+            Resize.Resize();
+        }
     }
 }
