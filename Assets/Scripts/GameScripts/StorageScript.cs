@@ -16,6 +16,7 @@ public class StorageScript : MonoBehaviour
             and add that to the money system; also clears storage at the end
     */
     [SerializeField] private SerializedDictionary<ProductData, int> storage;
+    public Dictionary<ProductData, int> Storage() => storage.BuildNativeDictionary();
     [SerializeField] List<RecipeData> recipes = new();
     [SerializeField] MoneySystem market;
 

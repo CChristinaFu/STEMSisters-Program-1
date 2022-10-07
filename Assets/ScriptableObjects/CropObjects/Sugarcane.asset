@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ProductImage>k__BackingField: {fileID: 0}
   <ProductPrice>k__BackingField: 1
-  <ProductName>k__BackingField: Sugar Cane
+  <ProductName>k__BackingField: Sugarcane
   growthLevel: 2
   witherTimer: 1
   waterconsumption: 2
