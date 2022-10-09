@@ -8418,9 +8418,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Stop
+      - m_Target: {fileID: 881784685}
+        m_TargetAssemblyTypeName: Interpreter, Assembly-CSharp
+        m_MethodName: StopTimer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9262,12 +9262,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1015896508}
+  - {fileID: 747665850}
   - {fileID: 753796731}
   - {fileID: 562275256}
   - {fileID: 792631039}
   - {fileID: 1434446248}
   - {fileID: 1966652804}
-  - {fileID: 747665850}
   - {fileID: 1912250714}
   m_Father: {fileID: 829323553}
   m_RootOrder: 1
@@ -14348,6 +14348,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 881784685}
+        m_TargetAssemblyTypeName: Interpreter, Assembly-CSharp
+        m_MethodName: StartTimer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &510833911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15977,7 +15989,7 @@ RectTransform:
   - {fileID: 754520116}
   - {fileID: 416872897}
   m_Father: {fileID: 311707871}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -20147,7 +20159,7 @@ RectTransform:
   - {fileID: 697299987}
   - {fileID: 1011887619}
   m_Father: {fileID: 311707871}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -20286,7 +20298,7 @@ RectTransform:
   - {fileID: 575524032}
   - {fileID: 1335915013}
   m_Father: {fileID: 311707871}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -21830,7 +21842,7 @@ RectTransform:
   - {fileID: 1587809775}
   - {fileID: 1968804528}
   m_Father: {fileID: 311707871}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -24501,6 +24513,8 @@ MonoBehaviour:
       value:
       - {fileID: 11400000, guid: fa1887670afb46741bf622d5e0df812b, type: 2}
     error: 0
+  waitTime: 1
+  timerLimit: 60
   fieldPrefab: {fileID: 4895422343031084911, guid: 436eee9d219594d32b83f1b34c975304,
     type: 3}
   <Storage>k__BackingField: {fileID: 936221776}
@@ -34015,9 +34029,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionPanelsList:
   - {fileID: 1015896509}
+  - {fileID: 747665852}
   - {fileID: 753796732}
   - {fileID: 562275257}
-  - {fileID: 747665852}
   - {fileID: 1912250715}
   blockToAddTransform: {fileID: 0}
   panelIndex: 8
@@ -42015,7 +42029,7 @@ RectTransform:
   - {fileID: 2023856171}
   - {fileID: 1239568047}
   m_Father: {fileID: 311707871}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -57046,7 +57060,7 @@ RectTransform:
   - {fileID: 1462706901}
   - {fileID: 792108343}
   m_Father: {fileID: 311707871}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 474e09b2363a8e047b26b6d2e4bbc24f
+guid: 2da8be6962f1a244dac4a210f25d64cd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -116,22 +116,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WheatSprite
+      name: CornSprite
       rect:
         serializedVersion: 2
-        x: 950
-        y: 625
-        width: 120
-        height: 237
+        x: 921
+        y: 670
+        width: 158
+        height: 349
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91ea1fcd87582ee4799ecf66ba95d49c
-      internalID: -901612899
+      spriteID: 00d25698ce6a8cc448af3febbf490794
+      internalID: 1856342243
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      WheatSprite: -901612899
+      Untitled-Artwork-6 (2)_1: -1994097274
+      Untitled-Artwork-6 (2)_2: 1769528476
+      Untitled-Artwork-6 (2)_3: -860329809
+      CornSprite: 1856342243
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

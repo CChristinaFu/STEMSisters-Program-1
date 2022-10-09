@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7b987cdfff9db104b95b48404bf78dc3
+guid: e5ec24c69f0d9124fb14100577e5a2c8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,22 +116,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FieldSprite
+      name: SugarcaneSprite
       rect:
         serializedVersion: 2
-        x: 526
-        y: 506
-        width: 389
-        height: 410
+        x: 1085
+        y: 669
+        width: 119
+        height: 339
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4eba8b7dcb5e1044ae3abd67a843a73
-      internalID: -292158152
+      spriteID: 6b59956b111278749b9d01204721d9b9
+      internalID: -1407840026
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FieldSprite: -292158152
+      SugarcaneSprite: -1407840026
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

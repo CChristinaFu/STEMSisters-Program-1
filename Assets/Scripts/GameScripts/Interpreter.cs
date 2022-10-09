@@ -8,9 +8,13 @@ using System.Linq;
 public class Interpreter : BE2_TargetObject
 {
     private readonly InterpreterError? NO_ERROR = null;
+    private Coroutine timerCoroutine = null;
     [Header("Helper Variables")]
     [SerializeField] private float tempFieldSpacing = 3;
     [SerializeField] private SerializedDictionary<ProductVariableKind, ProductData[]> productDictionary = new();
+    private float currentTargetTime = 0;
+    [SerializeField] float waitTime = 1;
+    [SerializeField] float timerLimit = 60;
 
     [Header("External References")]
     [SerializeField] private GameObject fieldPrefab;
@@ -20,16 +24,51 @@ public class Interpreter : BE2_TargetObject
     public MoneySystem Money { get; private set; }
     [field: SerializeField]
     public Dictionary<string, FieldSystem> Fields { get; private set; } = new();
-    public void ResetField() { 
+    public void ResetField()
+    {
         foreach (var f in Fields.Values)
         {
             Destroy(f.gameObject);
         }
 
-        Fields.Clear(); 
+        Fields.Clear();
     }
-
-
+    public void StartTimer()
+    {
+        if (timerCoroutine is null)
+        {
+            currentTargetTime = waitTime;
+            timerCoroutine = StartCoroutine(RunTimer());
+        }
+    }
+    public void StopTimer()
+    {
+        if (timerCoroutine is not null)
+        {
+            StopCoroutine(timerCoroutine);
+            timerCoroutine = null;
+            foreach (var field in Fields.Values)
+            {
+                field.DiscardAll();
+            }
+            Storage.ClearStorage();
+        }
+    }
+    private IEnumerator RunTimer()
+    {
+        for (float i = 0; i < timerLimit; i += waitTime)
+        {
+            Debug.Log($"timer = {i}");
+            while (currentTargetTime > 0)
+            {
+                yield return null;
+                currentTargetTime -= Time.deltaTime;
+            }
+            DebugGrowAll();
+            currentTargetTime = waitTime;
+        }
+        Debug.Log("finish running timer");
+    }
     public class UEvent_List_Var : UnityEvent<List<string>> { }
     public UEvent_List_Var OnVariableUpdate = new();
 
@@ -57,16 +96,20 @@ public class Interpreter : BE2_TargetObject
         return new ProductData[0];
     }
     # region Variable Functions
-    public bool CreateField(string fieldName, string cropName)
+    public bool CreateOrUpdateField(string fieldName, string cropName)
     {
-        // FIXME: Field should be placed by user
-        GameObject newField = Instantiate(fieldPrefab, Vector3.right * Fields.Count * tempFieldSpacing, Quaternion.identity);
-        FieldSystem fieldSystem = newField.GetComponent<FieldSystem>();
-        Fields.Add(fieldName, fieldSystem);
-        if (productDictionary.TryGetValue(ProductVariableKind.CROP, out var crops)
-        && System.Array.Find(crops, (x) => x.ProductName == cropName) is CropData crop)
+        FieldSystem field;
+        if (!Fields.TryGetValue(fieldName, out field))
         {
-            fieldSystem.SetFieldCrop(crop);
+            // FIXME: Field should be placed by user
+            GameObject newField = Instantiate(fieldPrefab, Vector3.right * Fields.Count * tempFieldSpacing, Quaternion.identity);
+            field = newField.GetComponent<FieldSystem>();
+            Fields.Add(fieldName, field);
+        }
+        if (productDictionary.TryGetValue(ProductVariableKind.CROP, out var crops)
+         && System.Array.Find(crops, (x) => x.ProductName == cropName) is CropData crop)
+        {
+            field.SetFieldCrop(crop);
             return true;
         }
         return false;
