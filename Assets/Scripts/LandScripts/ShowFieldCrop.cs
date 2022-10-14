@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(FieldSystem))]
+//[RequireComponent(typeof(FieldSystem))]
 public class ShowFieldCrop : MonoBehaviour
 {
     [SerializeField] FieldSystem field;
@@ -14,7 +14,7 @@ public class ShowFieldCrop : MonoBehaviour
     {
         if (field == null)
         {
-            field = GetComponent<FieldSystem>();
+            field = GetComponentInParent<FieldSystem>();
         }
         var gridSize = field.GetGridSize;
         for (int i = 0; i < gridSize.x; i++)

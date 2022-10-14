@@ -24,6 +24,12 @@ public class BE2_HideBlocksSelection : MonoBehaviour
 
         foreach (I_BE2_ProgrammingEnv env in BE2_ExecutionManager.Instance.ProgrammingEnvsList)
         {
+            //Debug.Log(env.Transform.GetComponentInParent<BE2_Canvas>().Canvas.transform.GetChild(0));
+            //Debug.Log(env.Transform.position);
+            //Debug.Log(env);
+            //Debug.Log(env.Transform.GetComponentInParent<BE2_Canvas>()); //error occurs here
+            //Debug.Log(env.Transform.GetComponentInParent<BE2_Canvas>().Canvas);  
+            //Debug.Log(env.Transform.GetComponentInParent<BE2_Canvas>().Canvas.transform.GetChild(0));
             _envs.Add(env.Transform.GetComponentInParent<BE2_Canvas>().Canvas.transform.GetChild(0), env.Transform.position);
         }
     }
