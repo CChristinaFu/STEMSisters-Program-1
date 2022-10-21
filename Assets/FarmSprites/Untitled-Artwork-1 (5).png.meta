@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a782bae1abd6b10448e0b69fa2601de3
+guid: 21cd224798a30e244a24853eddd44c10
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,22 +116,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StrawberrySprite
+      name: SeedSprite
       rect:
         serializedVersion: 2
-        x: 751
-        y: 776
-        width: 122
-        height: 112
+        x: 785
+        y: 679
+        width: 74
+        height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ea09ab94f1153440a1351d72e44852c
-      internalID: 1189497951
+      spriteID: 858c981d993a3ab419e1bbcb47952454
+      internalID: -1919553480
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      StrawberrySprite: 1189497951
+      Untitled-Artwork-1 (5)_3: 1060339288
+      Untitled-Artwork-1 (5)_8: 1744834509
+      Untitled-Artwork-1 (5)_5: 170679147
+      Untitled-Artwork-1 (5)_2: -829081028
+      Untitled-Artwork-1 (5)_1: 637167919
+      SeedSprite: -1919553480
+      Untitled-Artwork-1 (5)_6: 1472428828
+      Untitled-Artwork-1 (5)_9: -914571324
+      Untitled-Artwork-1 (5)_10: -98126599
+      Untitled-Artwork-1 (5)_0: -1056521051
+      Untitled-Artwork-1 (5)_4: -1167753014
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

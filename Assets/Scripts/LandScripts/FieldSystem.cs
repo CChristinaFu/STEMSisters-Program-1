@@ -30,9 +30,16 @@ public class FieldSystem : MonoBehaviour
         {
             if (crop != null)
             {
+
+                if (crop.currentLevelTimer > 0)
+                {
+                    crop.currentLevelTimer--;
+                    continue;
+                }
                 if (crop.currentGrowthLevel < CropData.growthLevel)
                 {
                     crop.currentGrowthLevel++;
+                    crop.currentLevelTimer = CropData.growthTimer;
                 }
                 else if (crop.witherTimer > 0)
                 {
@@ -68,6 +75,8 @@ public class FieldSystem : MonoBehaviour
     public bool SetFieldCrop(CropData data)
     {
         CropData = data;
+        GridSize = CropData.CropGridSize;
+        subField = new FieldCrop[GridSize.x * GridSize.y];
         return true;
     }
 
@@ -78,6 +87,7 @@ public class FieldSystem : MonoBehaviour
         subField[location] = new()
         {
             currentGrowthLevel = 0,
+            currentLevelTimer = CropData.growthTimer,
             witherTimer = CropData.witherTimer,
             waterAmount = 0,
         };
@@ -197,6 +207,7 @@ public class FieldCrop
 {
     // public int CropID = -1;
     public int currentGrowthLevel = -1;
+    public int currentLevelTimer = -1;
     public int witherTimer = -1;
     public float waterAmount = -1;
     public WaterStatus waterStatus;

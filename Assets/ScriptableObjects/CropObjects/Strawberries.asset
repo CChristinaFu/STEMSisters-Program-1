@@ -16,11 +16,15 @@ MonoBehaviour:
   <ProductPrice>k__BackingField: 1
   <ProductName>k__BackingField: Strawberry
   growthLevel: 2
+  growthTimer: 2
   witherTimer: 1
   waterconsumption: 2
   WaterRequirements: {x: 0, y: 0}
+  CropGridSize: {x: 3, y: 4}
+  CropSpriteSize: {x: 1, y: 1}
+  CropSpacing: {x: 1.15, y: 1}
   GrowthLevelImages:
-  - {fileID: 21300000, guid: 8d4fa5998e4b50c40875b1e1f21005f8, type: 3}
-  - {fileID: 21300000, guid: 111a1150de3f66d44953ab4368827e1e, type: 3}
-  - {fileID: -509102672, guid: ed4dc16ae9baa574a84249dd2c30275c, type: 3}
-  witherImage: {fileID: 21300000, guid: adfae103208dcfb479b198bfb03f095e, type: 3}
+  - {fileID: -1919553480, guid: 21cd224798a30e244a24853eddd44c10, type: 3}
+  - {fileID: 982388986, guid: 3c22fe5762da8574ba9ce90b89a64d27, type: 3}
+  - {fileID: 1189497951, guid: a782bae1abd6b10448e0b69fa2601de3, type: 3}
+  witherImage: {fileID: 21300000, guid: bb3e060c63b1c3342859a16e306d541f, type: 3}

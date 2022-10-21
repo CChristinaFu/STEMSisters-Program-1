@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a782bae1abd6b10448e0b69fa2601de3
+guid: 3c22fe5762da8574ba9ce90b89a64d27
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,22 +116,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StrawberrySprite
+      name: StrawberrySproutSprite
       rect:
         serializedVersion: 2
-        x: 751
-        y: 776
-        width: 122
-        height: 112
+        x: 673
+        y: 790
+        width: 62
+        height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ea09ab94f1153440a1351d72e44852c
-      internalID: 1189497951
+      spriteID: 3c7d9ddd385c5914fa625e5f58a1c008
+      internalID: 982388986
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      StrawberrySprite: 1189497951
+      StrawberrySproutSprite: 982388986
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

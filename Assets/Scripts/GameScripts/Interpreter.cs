@@ -58,7 +58,6 @@ public class Interpreter : BE2_TargetObject
     {
         for (float i = 0; i < timerLimit; i += waitTime)
         {
-            Debug.Log($"timer = {i}");
             while (currentTargetTime > 0)
             {
                 yield return null;

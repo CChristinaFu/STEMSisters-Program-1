@@ -9,17 +9,27 @@ public class ShowFieldCrop : MonoBehaviour
     [SerializeField] GameObject spriteVisualPrefab;
     [SerializeField] Sprite defaultSprite;
     [SerializeField] Vector2 spacing = Vector2.one;
+    private Vector2 CurrentGridSize = Vector2.zero;
     // Start is called before the first frame update
-    void Start()
+    void ReinitializeGrid()
     {
         if (field == null)
         {
             field = GetComponentInParent<FieldSystem>();
         }
-        var gridSize = field.GetGridSize;
-        for (int i = 0; i < gridSize.x; i++)
+        if (CurrentGridSize == field.GetGridSize)
         {
-            for (int j = 0; j < gridSize.y; j++)
+            return;
+        }
+        var children = new List<GameObject>();
+        foreach (Transform child in transform) children.Add(child.gameObject);
+        children.ForEach(child => Destroy(child));
+
+        CurrentGridSize = field.GetGridSize;
+        spacing = field.CropData.CropSpacing;
+        for (int i = 0; i < CurrentGridSize.x; i++)
+        {
+            for (int j = 0; j < CurrentGridSize.y; j++)
             {
                 var subFieldSprite = Instantiate(spriteVisualPrefab, this.transform);
                 subFieldSprite.transform.localPosition = new Vector3(i * spacing.x, j * spacing.y);
@@ -40,6 +50,7 @@ public class ShowFieldCrop : MonoBehaviour
 
     void FieldUpdate()
     {
+        ReinitializeGrid();
         for (int i = 0; i < transform.childCount; i++)
         {
             var crop = field.GetFieldCrop(i);
