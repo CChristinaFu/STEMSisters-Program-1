@@ -31,7 +31,7 @@ public class FieldSystem : MonoBehaviour
             if (crop != null)
             {
 
-                if (crop.currentLevelTimer > 0)
+                if (crop.currentLevelTimer > 1)
                 {
                     crop.currentLevelTimer--;
                     continue;

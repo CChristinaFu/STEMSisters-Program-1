@@ -114,6 +114,8 @@ GameObject:
   - component: {fileID: 4895422343031084897}
   - component: {fileID: 6298922966131063994}
   - component: {fileID: 8522725821507755431}
+  - component: {fileID: -2364696075551701434}
+  - component: {fileID: 4340482543317980030}
   m_Layer: 0
   m_Name: Field
   m_TagString: Untagged
@@ -154,7 +156,19 @@ MonoBehaviour:
   subField: []
   OnFieldUpdate:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -2364696075551701434}
+        m_TargetAssemblyTypeName: FieldDynamicTooltip, Assembly-CSharp
+        m_MethodName: FieldTooltipUpdate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   testLocation: 0
 --- !u!114 &6298922966131063994
 MonoBehaviour:
@@ -168,8 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99634edca86565b4a96a0b7b261787f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simpleTooltipStyle: {fileID: 11400000, guid: f1d1c287ded68be43934c42c517f05d2, type: 2}
-  infoLeft: Hello
+  simpleTooltipStyle: {fileID: 11400000, guid: d4c3f00e1adefad49afff228f3b638c8, type: 2}
+  infoLeft: 
   infoRight: 
 --- !u!65 &8522725821507755431
 BoxCollider:
@@ -182,5 +196,31 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 50, y: 53, z: 0.1}
+  m_Center: {x: 18, y: 23, z: 0}
+--- !u!114 &-2364696075551701434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4895422343031084911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599bbf7144fa5fb4e9a6841b7bb77b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  field: {fileID: 4895422343031084897}
+  tooltip: {fileID: 6298922966131063994}
+--- !u!114 &4340482543317980030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4895422343031084911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8f92458838105468c826b87eda56b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
