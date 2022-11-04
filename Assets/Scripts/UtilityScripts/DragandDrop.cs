@@ -5,7 +5,7 @@ using UnityEngine;
 public class DragandDrop : MonoBehaviour
 {
     private Vector3 originalPosition;
-    private bool isBeingBlocked = false;
+    private int numberOfBlockingObjects = 0;
     [SerializeField] Vector3 CameraOffset = Vector3.forward * 10;
     private void OnMouseDown()
     {
@@ -18,9 +18,20 @@ public class DragandDrop : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        if (isBeingBlocked)
+        if (numberOfBlockingObjects > 0)
         {
             this.transform.position = originalPosition;
         }
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+        numberOfBlockingObjects++;
+        Debug.LogWarning(numberOfBlockingObjects);
+    }
+    private void OnCollisionExit(Collision other)
+    {
+        numberOfBlockingObjects--;
+        Debug.LogWarning(numberOfBlockingObjects);
+
     }
 }

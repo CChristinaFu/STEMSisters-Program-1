@@ -28,12 +28,20 @@ public class DropdownScriptableObjectAssigner : MonoBehaviour
     {
         if (FindObjectOfType<Interpreter>() is Interpreter I)
         {
-            // For each product we get based on kind, extract name and image and produce a new dropdown option
-            dropdown.AddOptions(I.GetProductKind(varKind).Select(product => new Dropdown.OptionData(product.ProductName, product.ProductImage)).ToList());
+            UpdateDropDown(I);
         }
         if (GetComponent<BE2_DropdownDynamicResize>() is BE2_DropdownDynamicResize Resize)
         {
             Resize.Resize();
         }
+    }
+
+    private void UpdateDropDown(Interpreter I)
+    {
+        // For each product we get based on kind, extract name and image and produce a new dropdown option
+        dropdown.ClearOptions();
+        dropdown.AddOptions(I.GetProductKind(varKind).Select(product => new Dropdown.OptionData(product.ProductName, product.ProductImage)).ToList());
+        dropdown.value = 0;
+        dropdown.RefreshShownValue();
     }
 }

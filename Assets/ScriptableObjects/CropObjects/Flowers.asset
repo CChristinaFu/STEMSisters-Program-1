@@ -16,8 +16,15 @@ MonoBehaviour:
   <ProductPrice>k__BackingField: 1
   <ProductName>k__BackingField: Indigo
   growthLevel: 2
+  growthTimer: 1
   witherTimer: 1
   waterconsumption: 2
   WaterRequirements: {x: 0, y: 0}
-  GrowthLevelImages: []
+  CropGridSize: {x: 1, y: 1}
+  CropSpriteSize: {x: 1, y: 1}
+  CropSpacing: {x: 1, y: 1}
+  GrowthLevelImages:
+  - {fileID: -1919553480, guid: 21cd224798a30e244a24853eddd44c10, type: 3}
+  - {fileID: 982388986, guid: 3c22fe5762da8574ba9ce90b89a64d27, type: 3}
+  - {fileID: 1856342243, guid: 2da8be6962f1a244dac4a210f25d64cd, type: 3}
   witherImage: {fileID: 0}

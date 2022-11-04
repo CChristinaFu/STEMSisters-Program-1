@@ -1,0 +1,112 @@
+<Block>
+  <blockName>Block Cst FromStartEvent</blockName>
+  <position>(196.60, -321.07, 0.00)</position>
+  <isVariable>false</isVariable>
+  <varName />
+  <sections>
+    <Section>
+      <childBlocks>
+        <Block>
+          <blockName>Block Cst ListVariableField</blockName>
+          <position>(0.00, 10.00, 0.00)</position>
+          <isVariable>false</isVariable>
+          <varName />
+          <sections>
+            <Section>
+              <childBlocks />
+              <inputs>
+                <Input>
+                  <isOperation>true</isOperation>
+                  <value />
+                  <operation>
+                    <Block>
+                      <blockName>Block Op Variable</blockName>
+                      <position>(-144.17, 30.00, 0.00)</position>
+                      <isVariable>true</isVariable>
+                      <varName>st</varName>
+                      <sections>
+                        <Section>
+                          <childBlocks />
+                          <inputs>
+                            <Input>
+                              <isOperation>false</isOperation>
+                              <value>st</value>
+                            </Input>
+                          </inputs>
+                        </Section>
+                      </sections>
+                    </Block>
+                  </operation>
+                </Input>
+                <Input>
+                  <isOperation>false</isOperation>
+                  <value></value>
+                </Input>
+              </inputs>
+            </Section>
+          </sections>
+        </Block>
+        <Block>
+          <blockName>Block Cst RepeatXTimes</blockName>
+          <position>(0.00, -70.00, 0.00)</position>
+          <isVariable>false</isVariable>
+          <varName />
+          <sections>
+            <Section>
+              <childBlocks>
+                <Block>
+                  <blockName>Block Cst PlaceXInYAction</blockName>
+                  <position>(20.00, 10.00, 0.00)</position>
+                  <isVariable>false</isVariable>
+                  <varName />
+                  <sections>
+                    <Section>
+                      <childBlocks />
+                      <inputs>
+                        <Input>
+                          <isOperation>false</isOperation>
+                          <value>Corn</value>
+                        </Input>
+                        <Input>
+                          <isOperation>true</isOperation>
+                          <value />
+                          <operation>
+                            <Block>
+                              <blockName>Block Op Variable</blockName>
+                              <position>(30.33, 30.00, 0.00)</position>
+                              <isVariable>true</isVariable>
+                              <varName>st</varName>
+                              <sections>
+                                <Section>
+                                  <childBlocks />
+                                  <inputs>
+                                    <Input>
+                                      <isOperation>false</isOperation>
+                                      <value>st</value>
+                                    </Input>
+                                  </inputs>
+                                </Section>
+                              </sections>
+                            </Block>
+                          </operation>
+                        </Input>
+                      </inputs>
+                    </Section>
+                  </sections>
+                </Block>
+              </childBlocks>
+              <inputs>
+                <Input>
+                  <isOperation>false</isOperation>
+                  <value>12</value>
+                </Input>
+              </inputs>
+            </Section>
+          </sections>
+        </Block>
+      </childBlocks>
+      <inputs />
+    </Section>
+  </sections>
+</Block>
+#
