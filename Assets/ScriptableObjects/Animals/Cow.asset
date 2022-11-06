@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97a82f3e3ca9b64484122091236265e, type: 3}
+  m_Name: Cow
+  m_EditorClassIdentifier: 
+  <ProductImage>k__BackingField: {fileID: 21300000, guid: f004d321f2825c44d929e3d0f5844b8c,
+    type: 3}
+  <ProductPrice>k__BackingField: 1
+  <ProductName>k__BackingField: Milk
+  animalName: Cow
+  foodConsumption: 2
+  animalStage: 2
+  animalStageImage:
+  - {fileID: 21300000, guid: 5ed7b78422faa044695989e1108c5d63, type: 3}
+  - {fileID: 21300000, guid: 9c3fb1e6eb7fc9745b3bba559360321f, type: 3}

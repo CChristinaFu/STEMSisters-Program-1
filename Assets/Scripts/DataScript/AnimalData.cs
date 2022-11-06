@@ -11,4 +11,5 @@ public class AnimalData : ProductData
     public int animalStage = 2;
     public List<Sprite> animalStageImage;
 
+    public override string Name => animalName;
 }

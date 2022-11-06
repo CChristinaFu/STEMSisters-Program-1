@@ -12,6 +12,7 @@ public class DropdownVariableAssign : MonoBehaviour
         dropdown.ClearOptions();
         dropdown.AddOptions(VarName);
         dropdown.value = 0;
+        // print(dropdown.options[dropdown.value].text);
         dropdown.RefreshShownValue();
     }
 

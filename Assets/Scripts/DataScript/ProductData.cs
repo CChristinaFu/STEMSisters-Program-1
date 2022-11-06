@@ -12,4 +12,5 @@ public class ProductData : ScriptableObject
     [field: SerializeField]
     public virtual string ProductName { get; protected set; }
 
+    public virtual string Name => ProductName;
 }

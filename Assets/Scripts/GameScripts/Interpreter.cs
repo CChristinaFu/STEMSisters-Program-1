@@ -155,11 +155,16 @@ public class Interpreter : BE2_TargetObject
 
     public InterpreterError? PlaceItemInList(string cropName, string fieldName)
     {
-        if (productDictionary.TryGetValue(ProductVariableKind.CROP, out var crops) && System.Array.Find(crops, (x) => x.ProductName == cropName) is CropData crop)
+        if (productDictionary.TryGetValue(ProductVariableKind.CROP, out var crops))
         {
-            return PlaceItemInList(crop, fieldName);
+            if (System.Array.Find(crops, (x) => x.ProductName == cropName) is CropData crop)
+            {
+                return PlaceItemInList(crop, fieldName);
+            }
+            return new InterpreterError($"No crop found with name {cropName}");
+
         }
-        return new InterpreterError($"No crop found with name {cropName}");
+        return new InterpreterError($"No crops defined");
     }
 
     public InterpreterError? WaterAllPlants(string fieldName)
@@ -191,11 +196,16 @@ public class Interpreter : BE2_TargetObject
 
     public InterpreterError? HarvestItemInList(string cropName, string fieldName)
     {
-        if (productDictionary.TryGetValue(ProductVariableKind.CROP, out var crops) && System.Array.Find(crops, (x) => x.ProductName == cropName) is CropData crop)
+        if (productDictionary.TryGetValue(ProductVariableKind.CROP, out var crops))
         {
-            return HarvestItemInList(crop, fieldName);
+            if (System.Array.Find(crops, (x) => x.ProductName == cropName) is CropData crop)
+            {
+
+                return HarvestItemInList(crop, fieldName);
+            }
+            return new InterpreterError($"No crop found with name {cropName}");
         }
-        return new InterpreterError($"No crop found with name {cropName}");
+        return new InterpreterError($"No crops defined");
     }
 
     public InterpreterError? DiscardAllItems(string listName)

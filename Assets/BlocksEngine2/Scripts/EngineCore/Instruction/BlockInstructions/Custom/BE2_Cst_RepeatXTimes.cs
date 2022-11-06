@@ -33,11 +33,9 @@ public class BE2_Cst_RepeatXTimes : BE2_InstructionBase, I_BE2_Instruction
 
         // Section0Inputs[inputIndex];
         int repeatNum = (int)Section0Inputs[0].FloatValue;
-        Debug.Log(repeatNum);
         if (currentStep < repeatNum)
         {
             currentStep++;
-            Debug.Log($"starting step {currentStep}");
             ExecuteSection(0);
         }
         else
