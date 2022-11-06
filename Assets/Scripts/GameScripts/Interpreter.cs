@@ -10,7 +10,9 @@ public class Interpreter : BE2_TargetObject
     private readonly InterpreterError? NO_ERROR = null;
     private Coroutine timerCoroutine = null;
     [Header("Helper Variables")]
-    [SerializeField] private float tempFieldSpacing = 3;
+    [SerializeField] private Vector3 fieldStartingPosition;
+    [SerializeField] private Vector2 FieldSpacing = Vector2.one;
+    [SerializeField] private int fieldColumns = 4;
     [SerializeField] private SerializedDictionary<ProductVariableKind, ProductData[]> productDictionary = new();
     private float currentTargetTime = 0;
     [SerializeField] float waitTime = 1;
@@ -71,25 +73,28 @@ public class Interpreter : BE2_TargetObject
     public class UEvent_List_Var : UnityEvent<List<string>> { }
     public UEvent_List_Var OnVariableUpdate = new();
 
-    public ProductData[] GetProductKind(ProductVariableKind kind)
+    public ProductData[] GetProductKind(ProductVariableKind kind, bool ignoreBlankProducts = true)
     {
         if (kind == ProductVariableKind.ALL_PRODUCTS)
         {
             // Combine Crop, Animal, and Recipe Products into a single array
-            return GetProductKind(ProductVariableKind.CROP)
-                .Concat(GetProductKind(ProductVariableKind.ANIMAL))
-                .Concat(GetProductKind(ProductVariableKind.RECIPE))
+            return GetProductKind(ProductVariableKind.AGRICULTURAL, ignoreBlankProducts)
+                .Concat(GetProductKind(ProductVariableKind.RECIPE, ignoreBlankProducts))
                 .ToArray();
         }
         else if (kind == ProductVariableKind.AGRICULTURAL)
         {
             // Combine Crop and Animal, Products into a single array
-            return GetProductKind(ProductVariableKind.CROP)
-                .Concat(GetProductKind(ProductVariableKind.ANIMAL))
+            return GetProductKind(ProductVariableKind.CROP, ignoreBlankProducts)
+                .Concat(GetProductKind(ProductVariableKind.ANIMAL, ignoreBlankProducts))
                 .ToArray();
         }
         else if (productDictionary.TryGetValue(kind, out var products))
         {
+            if (ignoreBlankProducts)
+            {
+                return products.Where(p => p.ProductPrice > 0).ToArray();
+            }
             return products;
         }
         return new ProductData[0];
@@ -101,7 +106,9 @@ public class Interpreter : BE2_TargetObject
         if (!Fields.TryGetValue(fieldName, out field))
         {
             // FIXME: Field should be placed by user
-            GameObject newField = Instantiate(fieldPrefab, Vector3.right * Fields.Count * tempFieldSpacing, Quaternion.identity);
+            int row = -System.Math.DivRem(Fields.Count, fieldColumns, out int column);
+            Vector3 offset = new(FieldSpacing.x * column, FieldSpacing.y * row);
+            GameObject newField = Instantiate(fieldPrefab, fieldStartingPosition + offset, Quaternion.identity);
             field = newField.GetComponent<FieldSystem>();
             Fields.Add(fieldName, field);
         }

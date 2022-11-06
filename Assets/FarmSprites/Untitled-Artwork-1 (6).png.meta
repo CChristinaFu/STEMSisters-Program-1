@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e5ec24c69f0d9124fb14100577e5a2c8
+guid: 5f14982e02be63147a88216cb55acd7c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,22 +116,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SugarCaneSprite
+      name: WiltedSprite
       rect:
         serializedVersion: 2
-        x: 1085
-        y: 670
-        width: 119
-        height: 337
+        x: 1290
+        y: 484
+        width: 149
+        height: 104
       alignment: 9
-      pivot: {x: 0.54410946, y: 0.07323367}
+      pivot: {x: 0.4803434, y: 0.3873549}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f46b7c559072b094b9ff5997a10d428e
-      internalID: -1401595041
+      spriteID: e46ff26924282cd4f90ca4fe73bcce97
+      internalID: 1817996232
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SugarCaneSprite: -1401595041
+      WiltedSprite: 1817996232
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

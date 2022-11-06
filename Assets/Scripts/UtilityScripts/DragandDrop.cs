@@ -58,7 +58,7 @@ public class DragandDrop : MonoBehaviour
     {
         var tempCol = new Collider[2];
         print($"{col.center}, {col.size / 2 + Vector3.forward * 100}");
-        isBeingBlocked = Physics.OverlapBoxNonAlloc(col.center, col.size / 2 + Vector3.forward * 100, tempCol) > 1;
+        isBeingBlocked = Physics.OverlapBoxNonAlloc(GetMousePos() + offsetPos, col.size / 2 + Vector3.forward * 100, tempCol) > 1;
         print($"{gameObject} => {isBeingBlocked}: {tempCol[0]} {tempCol[1]}");
         if (isBeingBlocked)
         {

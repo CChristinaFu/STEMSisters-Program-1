@@ -40,7 +40,7 @@ public class DropdownScriptableObjectAssigner : MonoBehaviour
     {
         // For each product we get based on kind, extract name and image and produce a new dropdown option
         dropdown.ClearOptions();
-        dropdown.AddOptions(I.GetProductKind(varKind).Select(product => new Dropdown.OptionData(product.Name, product.ProductImage)).ToList());
+        dropdown.AddOptions(I.GetProductKind(varKind, ignoreBlankProducts: false).Select(product => new Dropdown.OptionData(product.Name, product.ProductImage)).ToList());
         dropdown.value = 0;
         // print(dropdown.options[dropdown.value].text);
         dropdown.RefreshShownValue();

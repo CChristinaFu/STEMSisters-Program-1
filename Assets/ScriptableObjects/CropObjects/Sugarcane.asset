@@ -16,11 +16,15 @@ MonoBehaviour:
   <ProductPrice>k__BackingField: 1
   <ProductName>k__BackingField: Sugarcane
   growthLevel: 2
+  growthTimer: 2
   witherTimer: 1
   waterconsumption: 2
   WaterRequirements: {x: 0, y: 0}
+  CropGridSize: {x: 3, y: 4}
+  CropSpriteSize: {x: 1, y: 1}
+  CropSpacing: {x: 1.2, y: 0.9}
   GrowthLevelImages:
-  - {fileID: 21300000, guid: 2b91edec92aefa94dbb559d7afd5886c, type: 3}
-  - {fileID: 21300000, guid: fcb883317cf226e48ba480b4f9b68454, type: 3}
-  - {fileID: 21300000, guid: 4352ab2d272125e4297920f334d23d57, type: 3}
-  witherImage: {fileID: 21300000, guid: a11d716ada219fe4683e6147d610043e, type: 3}
+  - {fileID: -1919553480, guid: 21cd224798a30e244a24853eddd44c10, type: 3}
+  - {fileID: 982388986, guid: 3c22fe5762da8574ba9ce90b89a64d27, type: 3}
+  - {fileID: -1401595041, guid: e5ec24c69f0d9124fb14100577e5a2c8, type: 3}
+  witherImage: {fileID: 1817996232, guid: 5f14982e02be63147a88216cb55acd7c, type: 3}

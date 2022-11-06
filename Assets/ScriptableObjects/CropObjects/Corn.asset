@@ -22,9 +22,9 @@ MonoBehaviour:
   WaterRequirements: {x: 0, y: 0}
   CropGridSize: {x: 3, y: 4}
   CropSpriteSize: {x: 1, y: 1}
-  CropSpacing: {x: 1, y: 1}
+  CropSpacing: {x: 1.2, y: 0.9}
   GrowthLevelImages:
   - {fileID: -1919553480, guid: 21cd224798a30e244a24853eddd44c10, type: 3}
   - {fileID: 982388986, guid: 3c22fe5762da8574ba9ce90b89a64d27, type: 3}
-  - {fileID: 1856342243, guid: 2da8be6962f1a244dac4a210f25d64cd, type: 3}
-  witherImage: {fileID: 0}
+  - {fileID: -666955845, guid: 2da8be6962f1a244dac4a210f25d64cd, type: 3}
+  witherImage: {fileID: 1817996232, guid: 5f14982e02be63147a88216cb55acd7c, type: 3}

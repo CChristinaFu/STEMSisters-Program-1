@@ -69,7 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,19 +119,19 @@ TextureImporter:
       name: CornSprite
       rect:
         serializedVersion: 2
-        x: 921
+        x: 922
         y: 670
-        width: 158
-        height: 349
+        width: 155
+        height: 346
       alignment: 9
-      pivot: {x: 0.475815, y: 0.031928908}
+      pivot: {x: 0.4790807, y: 0.050173543}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00d25698ce6a8cc448af3febbf490794
-      internalID: 1856342243
+      spriteID: 209a9ec426df0854dbb28198a5028f24
+      internalID: -666955845
       vertices: []
       indices: 
       edges: []
@@ -147,10 +147,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Untitled-Artwork-6 (2)_1: -1994097274
-      Untitled-Artwork-6 (2)_2: 1769528476
-      Untitled-Artwork-6 (2)_3: -860329809
-      CornSprite: 1856342243
+      Untitled-Artwork-6 (2)_1: -1883802641
+      Untitled-Artwork-6 (2)_2: 1754715695
+      Untitled-Artwork-6 (2)_3: -1117870419
+      CornSprite: -666955845
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

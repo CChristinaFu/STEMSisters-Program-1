@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e5ec24c69f0d9124fb14100577e5a2c8
+guid: 7be837042b5f5f243951056a9e59ca17
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,22 +116,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SugarCaneSprite
+      name: IndigoSprite
       rect:
         serializedVersion: 2
-        x: 1085
-        y: 670
-        width: 119
-        height: 337
+        x: 1389
+        y: 654
+        width: 72
+        height: 183
       alignment: 9
-      pivot: {x: 0.54410946, y: 0.07323367}
+      pivot: {x: 0.4484524, y: 0.09437903}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f46b7c559072b094b9ff5997a10d428e
-      internalID: -1401595041
+      spriteID: 9ff26ebf5a83ec74f81ee8ecbfb747dc
+      internalID: -627382600
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SugarCaneSprite: -1401595041
+      IndigoSprite: -627382600
+      Untitled-Artwork-2 (7)_0: 2088835069
+      Untitled-Artwork-2 (7)_2: 920086733
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
