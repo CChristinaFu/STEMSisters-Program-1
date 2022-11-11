@@ -7,12 +7,12 @@ using UnityEngine.EventSystems;
 public class SimpleTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public SimpleTooltipStyle simpleTooltipStyle;
+    [SerializeField, Tooltip("Is the object any UI/2D Object?\n true = Collider2D, false = Collider")] bool isUIObject = false;
     [TextArea] public string infoLeft = "Hello";
     [TextArea] public string infoRight = "";
     private STController tooltipController;
     private EventSystem eventSystem;
     private bool cursorInside = false;
-    private bool isUIObject = false;
     private bool showing = false;
 
     private void Awake()

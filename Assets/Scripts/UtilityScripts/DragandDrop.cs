@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class DragandDrop : MonoBehaviour
+using UnityEngine.EventSystems;
+public class DragandDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Vector3 originalPosition;
     private bool isBeingBlocked = false;
     private Vector3 offsetPos;
-    [SerializeField] BoxCollider col;
+    [SerializeField] BoxCollider2D col;
     // [SerializeField] Rigidbody rb;
     [SerializeField] Vector3 cameraOffset = Vector3.forward * 10;
     [SerializeField] Camera mainCamera = null;
@@ -24,46 +24,66 @@ public class DragandDrop : MonoBehaviour
         // }
         if (col == null)
         {
-            col = GetComponent<BoxCollider>();
+            col = GetComponentInChildren<BoxCollider2D>();
         }
     }
 
-    public Vector3 GetMousePos()
-    {
-        return mainCamera.ScreenToWorldPoint(Input.mousePosition) + cameraOffset;
-    }
+    public Vector3 GetMousePos() => mainCamera.ScreenToWorldPoint(Input.mousePosition) + cameraOffset;
+
+    public Vector3 GetMouseWithOffset() => GetMousePos() + offsetPos;
 
     private void OnMouseDown()
+    {
+        DragStart();
+    }
+
+    private void DragStart()
     {
         originalPosition = this.transform.position;
         offsetPos = originalPosition - GetMousePos();
         // col.enabled = false;
     }
+
     private void OnMouseDrag()
     {
-        // var tempCol = new Collider[2];
-        // isBeingBlocked = Physics.OverlapBoxNonAlloc(col.center, col.size / 2 + cameraOffset, tempCol) > 1;
-        // print($"{gameObject} => {isBeingBlocked}: {tempCol[0]} {tempCol[1]}");
-        // if (rb)
-        // {
-        //     rb.MovePosition(GetMousePos() + offsetPos);
-        // }
-        // else
-        // {
-        //     this.transform.position = GetMousePos() + offsetPos;
-        // }
-        this.transform.position = GetMousePos() + offsetPos;
+        DragContinue();
     }
+
+    private void DragContinue()
+    {
+        this.transform.position = GetMouseWithOffset();
+    }
+
     private void OnMouseUp()
     {
-        var tempCol = new Collider[2];
-        print($"{col.center}, {col.size / 2 + Vector3.forward * 100}");
-        isBeingBlocked = Physics.OverlapBoxNonAlloc(GetMousePos() + offsetPos, col.size / 2 + Vector3.forward * 100, tempCol) > 1;
-        print($"{gameObject} => {isBeingBlocked}: {tempCol[0]} {tempCol[1]}");
+        DragEnd();
+    }
+
+    private void DragEnd()
+    {
+        var tempCol = new Collider2D[2];
+        // print($"{col.offset}, {col.size}");
+        isBeingBlocked = Physics2D.OverlapBoxNonAlloc(GetMouseWithOffset(), col.size, 0, tempCol) > 1;
+        // print($"{gameObject} => {isBeingBlocked}: {tempCol[0]} {tempCol[1]}");
         if (isBeingBlocked)
         {
             this.transform.position = originalPosition;
         }
         // col.enabled = true;
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        DragStart();
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        DragContinue();
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        DragEnd();
     }
 }

@@ -26,10 +26,13 @@ public class BE2_HideBlocksSelection : MonoBehaviour
         {
             //Debug.Log(env);
             //Debug.Log(env.Transform.position);
-            Debug.Log(env.Transform.GetComponentInParent<BE2_Canvas>()); //error occurs here
+            // Debug.Log(env.Transform.GetComponentInParent<BE2_Canvas>()); //error occurs here
             //Debug.Log(env.Transform.GetComponentInParent<BE2_Canvas>().Canvas);  
             // Debug.Log(env.Transform.GetComponentInParent<BE2_Canvas>().Canvas.transform.GetChild(0));
-            _envs.Add(env.Transform.GetComponentInParent<BE2_Canvas>().Canvas.transform.GetChild(0), env.Transform.position);
+            if (env.Transform.GetComponentInParent<BE2_Canvas>() is BE2_Canvas envCanvas)
+            {
+                _envs.Add(envCanvas.Canvas.transform.GetChild(0), env.Transform.position);
+            }
         }
     }
 
@@ -58,6 +61,18 @@ public class BE2_HideBlocksSelection : MonoBehaviour
             {
                 env.Key.position = env.Value;
             }
+        }
+    }
+
+    public void ToggleBlockSelection()
+    {
+        if (_blocksSelectionCanvas.gameObject.activeSelf)
+        {
+            HideBlocksSelection();
+        }
+        else
+        {
+            ShowBlocksSelection();
         }
     }
 }

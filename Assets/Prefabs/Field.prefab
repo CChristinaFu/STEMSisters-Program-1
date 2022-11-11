@@ -113,9 +113,9 @@ GameObject:
   - component: {fileID: 4895422343031084910}
   - component: {fileID: 4895422343031084897}
   - component: {fileID: 6298922966131063994}
-  - component: {fileID: 8522725821507755431}
   - component: {fileID: -2364696075551701434}
   - component: {fileID: 4340482543317980030}
+  - component: {fileID: 3660481151611878829}
   m_Layer: 0
   m_Name: Field
   m_TagString: Untagged
@@ -183,21 +183,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   simpleTooltipStyle: {fileID: 11400000, guid: d4c3f00e1adefad49afff228f3b638c8, type: 2}
+  isUIObject: 1
   infoLeft: 
   infoRight: 
---- !u!65 &8522725821507755431
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4895422343031084911}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 50, y: 53, z: 0.1}
-  m_Center: {x: 18, y: 23, z: 0}
 --- !u!114 &-2364696075551701434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +212,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8f92458838105468c826b87eda56b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 0}
+  col: {fileID: 3660481151611878829}
   cameraOffset: {x: 0, y: 0, z: 10}
   mainCamera: {fileID: 0}
+--- !u!61 &3660481151611878829
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4895422343031084911}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 18.541307, y: 22.228004}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.1854394, y: 0.13620189}
+    oldSize: {x: 3.8900003, y: 4.1000004}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 52.449474, y: 55.574005}
+  m_EdgeRadius: 0
