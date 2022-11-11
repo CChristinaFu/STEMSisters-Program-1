@@ -47,8 +47,48 @@
           </sections>
         </Block>
         <Block>
-          <blockName>Block Cst RepeatXTimes</blockName>
+          <blockName>Block Cst ListVariableField</blockName>
           <position>(0.00, -70.00, 0.00)</position>
+          <isVariable>false</isVariable>
+          <varName />
+          <sections>
+            <Section>
+              <childBlocks />
+              <inputs>
+                <Input>
+                  <isOperation>true</isOperation>
+                  <value />
+                  <operation>
+                    <Block>
+                      <blockName>Block Op Variable</blockName>
+                      <position>(-176.17, 30.00, 0.00)</position>
+                      <isVariable>true</isVariable>
+                      <varName>s</varName>
+                      <sections>
+                        <Section>
+                          <childBlocks />
+                          <inputs>
+                            <Input>
+                              <isOperation>false</isOperation>
+                              <value>s</value>
+                            </Input>
+                          </inputs>
+                        </Section>
+                      </sections>
+                    </Block>
+                  </operation>
+                </Input>
+                <Input>
+                  <isOperation>false</isOperation>
+                  <value>Sugarcane</value>
+                </Input>
+              </inputs>
+            </Section>
+          </sections>
+        </Block>
+        <Block>
+          <blockName>Block Cst RepeatXTimes</blockName>
+          <position>(0.00, -150.00, 0.00)</position>
           <isVariable>false</isVariable>
           <varName />
           <sections>
@@ -89,6 +129,213 @@
                               </sections>
                             </Block>
                           </operation>
+                        </Input>
+                      </inputs>
+                    </Section>
+                  </sections>
+                </Block>
+                <Block>
+                  <blockName>Block Cst PlaceXInYAction</blockName>
+                  <position>(20.00, -70.00, 0.00)</position>
+                  <isVariable>false</isVariable>
+                  <varName />
+                  <sections>
+                    <Section>
+                      <childBlocks />
+                      <inputs>
+                        <Input>
+                          <isOperation>false</isOperation>
+                          <value>Sugarcane</value>
+                        </Input>
+                        <Input>
+                          <isOperation>true</isOperation>
+                          <value />
+                          <operation>
+                            <Block>
+                              <blockName>Block Op Variable</blockName>
+                              <position>(62.33, 30.00, 0.00)</position>
+                              <isVariable>true</isVariable>
+                              <varName>s</varName>
+                              <sections>
+                                <Section>
+                                  <childBlocks />
+                                  <inputs>
+                                    <Input>
+                                      <isOperation>false</isOperation>
+                                      <value>s</value>
+                                    </Input>
+                                  </inputs>
+                                </Section>
+                              </sections>
+                            </Block>
+                          </operation>
+                        </Input>
+                      </inputs>
+                    </Section>
+                  </sections>
+                </Block>
+              </childBlocks>
+              <inputs>
+                <Input>
+                  <isOperation>false</isOperation>
+                  <value>12</value>
+                </Input>
+              </inputs>
+            </Section>
+          </sections>
+        </Block>
+        <Block>
+          <blockName>Block Cst WaitXSeconds</blockName>
+          <position>(0.00, -420.00, 0.00)</position>
+          <isVariable>false</isVariable>
+          <varName />
+          <sections>
+            <Section>
+              <childBlocks />
+              <inputs>
+                <Input>
+                  <isOperation>false</isOperation>
+                  <value>6</value>
+                </Input>
+              </inputs>
+            </Section>
+          </sections>
+        </Block>
+        <Block>
+          <blockName>Block Cst RepeatXTimes</blockName>
+          <position>(0.00, -490.00, 0.00)</position>
+          <isVariable>false</isVariable>
+          <varName />
+          <sections>
+            <Section>
+              <childBlocks>
+                <Block>
+                  <blockName>Block Cst HarvestXFromYAction</blockName>
+                  <position>(20.00, 10.00, 0.00)</position>
+                  <isVariable>false</isVariable>
+                  <varName />
+                  <sections>
+                    <Section>
+                      <childBlocks />
+                      <inputs>
+                        <Input>
+                          <isOperation>false</isOperation>
+                          <value>Sugarcane</value>
+                        </Input>
+                        <Input>
+                          <isOperation>true</isOperation>
+                          <value />
+                          <operation>
+                            <Block>
+                              <blockName>Block Op Variable</blockName>
+                              <position>(88.33, 30.00, 0.00)</position>
+                              <isVariable>true</isVariable>
+                              <varName>s</varName>
+                              <sections>
+                                <Section>
+                                  <childBlocks />
+                                  <inputs>
+                                    <Input>
+                                      <isOperation>false</isOperation>
+                                      <value>s</value>
+                                    </Input>
+                                  </inputs>
+                                </Section>
+                              </sections>
+                            </Block>
+                          </operation>
+                        </Input>
+                      </inputs>
+                    </Section>
+                  </sections>
+                </Block>
+                <Block>
+                  <blockName>Block Cst HarvestXFromYAction</blockName>
+                  <position>(20.00, -70.00, 0.00)</position>
+                  <isVariable>false</isVariable>
+                  <varName />
+                  <sections>
+                    <Section>
+                      <childBlocks />
+                      <inputs>
+                        <Input>
+                          <isOperation>false</isOperation>
+                          <value>Strawberry</value>
+                        </Input>
+                        <Input>
+                          <isOperation>true</isOperation>
+                          <value />
+                          <operation>
+                            <Block>
+                              <blockName>Block Op Variable</blockName>
+                              <position>(88.33, 30.00, 0.00)</position>
+                              <isVariable>true</isVariable>
+                              <varName>a</varName>
+                              <sections>
+                                <Section>
+                                  <childBlocks />
+                                  <inputs>
+                                    <Input>
+                                      <isOperation>false</isOperation>
+                                      <value>a</value>
+                                    </Input>
+                                  </inputs>
+                                </Section>
+                              </sections>
+                            </Block>
+                          </operation>
+                        </Input>
+                      </inputs>
+                    </Section>
+                  </sections>
+                </Block>
+              </childBlocks>
+              <inputs>
+                <Input>
+                  <isOperation>false</isOperation>
+                  <value>12</value>
+                </Input>
+              </inputs>
+            </Section>
+          </sections>
+        </Block>
+        <Block>
+          <blockName>Block Cst RepeatXTimes</blockName>
+          <position>(0.00, -760.00, 0.00)</position>
+          <isVariable>false</isVariable>
+          <varName />
+          <sections>
+            <Section>
+              <childBlocks>
+                <Block>
+                  <blockName>Block Cst SellXAction</blockName>
+                  <position>(20.00, 10.00, 0.00)</position>
+                  <isVariable>false</isVariable>
+                  <varName />
+                  <sections>
+                    <Section>
+                      <childBlocks />
+                      <inputs>
+                        <Input>
+                          <isOperation>false</isOperation>
+                          <value>Sugarcane</value>
+                        </Input>
+                      </inputs>
+                    </Section>
+                  </sections>
+                </Block>
+                <Block>
+                  <blockName>Block Cst SellXAction</blockName>
+                  <position>(20.00, -60.00, 0.00)</position>
+                  <isVariable>false</isVariable>
+                  <varName />
+                  <sections>
+                    <Section>
+                      <childBlocks />
+                      <inputs>
+                        <Input>
+                          <isOperation>false</isOperation>
+                          <value>Strawberry</value>
                         </Input>
                       </inputs>
                     </Section>

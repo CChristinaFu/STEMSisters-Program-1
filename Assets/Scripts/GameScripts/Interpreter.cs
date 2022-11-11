@@ -13,6 +13,7 @@ public class Interpreter : BE2_TargetObject
     [SerializeField] private Vector3 fieldStartingPosition;
     [SerializeField] private Vector2 FieldSpacing = Vector2.one;
     [SerializeField] private int fieldColumns = 4;
+    [SerializeField] private ProductData emptyProductData;
     [SerializeField] private SerializedDictionary<ProductVariableKind, ProductData[]> productDictionary = new();
     private float currentTargetTime = 0;
     [SerializeField] float waitTime = 1;
@@ -79,23 +80,26 @@ public class Interpreter : BE2_TargetObject
         {
             // Combine Crop, Animal, and Recipe Products into a single array
             return GetProductKind(ProductVariableKind.AGRICULTURAL, ignoreBlankProducts)
-                .Concat(GetProductKind(ProductVariableKind.RECIPE, ignoreBlankProducts))
+                .Concat(GetProductKind(ProductVariableKind.RECIPE, ignoreBlankProducts: true))
                 .ToArray();
         }
         else if (kind == ProductVariableKind.AGRICULTURAL)
         {
             // Combine Crop and Animal, Products into a single array
             return GetProductKind(ProductVariableKind.CROP, ignoreBlankProducts)
-                .Concat(GetProductKind(ProductVariableKind.ANIMAL, ignoreBlankProducts))
+                .Concat(GetProductKind(ProductVariableKind.ANIMAL, ignoreBlankProducts: true))
                 .ToArray();
         }
         else if (productDictionary.TryGetValue(kind, out var products))
         {
             if (ignoreBlankProducts)
             {
-                return products.Where(p => p.ProductPrice > 0).ToArray();
+                return products;
             }
-            return products;
+            ProductData[] newArray = new ProductData[products.Length + 1];
+            newArray[0] = emptyProductData;
+            System.Array.Copy(products, 0, newArray, 1, products.Length);
+            return newArray;
         }
         return new ProductData[0];
     }
@@ -110,6 +114,7 @@ public class Interpreter : BE2_TargetObject
             Vector3 offset = new(FieldSpacing.x * column, FieldSpacing.y * row);
             GameObject newField = Instantiate(fieldPrefab, fieldStartingPosition + offset, Quaternion.identity);
             field = newField.GetComponent<FieldSystem>();
+            field.fieldName = fieldName;
             Fields.Add(fieldName, field);
         }
         if (productDictionary.TryGetValue(ProductVariableKind.CROP, out var crops)

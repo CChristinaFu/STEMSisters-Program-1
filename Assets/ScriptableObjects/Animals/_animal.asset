@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ProductImage>k__BackingField: {fileID: 0}
   <ProductPrice>k__BackingField: 0
-  <ProductName>k__BackingField: 
-  animalName: 
+  <ProductName>k__BackingField: ' '
+  animalName: ' '
   foodConsumption: 0
   animalStage: 0
   animalStageImage: []

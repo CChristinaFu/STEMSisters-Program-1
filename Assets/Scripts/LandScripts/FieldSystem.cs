@@ -12,6 +12,7 @@ public class FieldSystem : MonoBehaviour
     public Vector2Int GetGridSize => GridSize;
     [EditorButton(nameof(RandomizeField))]
     public FieldCrop[] subField;
+    public string fieldName = "test";
 
     public UnityEvent OnFieldUpdate = new();
     private void Awake()

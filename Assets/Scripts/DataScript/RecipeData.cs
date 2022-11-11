@@ -22,7 +22,7 @@ public class RecipeData : ProductData
         }
         return true;
     }
-    public int ProduceProducts(SerializedDictionary<ProductData, int> inputs)
+    public int ProduceProducts(ref SerializedDictionary<ProductData, int> inputs)
     {
         if (CheckEnoughInput(inputs))
         {

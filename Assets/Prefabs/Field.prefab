@@ -154,6 +154,7 @@ MonoBehaviour:
   <CropData>k__BackingField: {fileID: 0}
   GridSize: {x: 3, y: 3}
   subField: []
+  fieldName: test
   OnFieldUpdate:
     m_PersistentCalls:
       m_Calls:
@@ -228,7 +229,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 18.541307, y: 22.228004}
+  m_Offset: {x: -7.4583874, y: -6.6922703}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.1854394, y: 0.13620189}
@@ -239,5 +240,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 52.449474, y: 55.574005}
+  m_Size: {x: 56.204548, y: 58.340244}
   m_EdgeRadius: 0

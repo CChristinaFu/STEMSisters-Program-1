@@ -9,7 +9,7 @@ public class FieldDynamicTooltip : MonoBehaviour
     [SerializeField] SimpleTooltip tooltip;
     public void FieldTooltipUpdate()
     {
-        tooltip.infoLeft = $@"{field.CropData.ProductName} field =
+        tooltip.infoLeft = $@"{field.CropData.ProductName} field = ''{field.fieldName}'';
     # of crops in field: {field.subField.Count(x => x != null)}
     Water Requirement: {field.CropData.WaterRequirements.x} - {field.CropData.WaterRequirements.y}";
 

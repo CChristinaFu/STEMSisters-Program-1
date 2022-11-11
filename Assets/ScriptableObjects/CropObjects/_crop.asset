@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ProductImage>k__BackingField: {fileID: 0}
   <ProductPrice>k__BackingField: 0
-  <ProductName>k__BackingField: 
+  <ProductName>k__BackingField: ' '
   growthLevel: 0
   growthTimer: 0
   witherTimer: 0

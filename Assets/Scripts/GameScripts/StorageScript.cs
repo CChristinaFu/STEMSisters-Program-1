@@ -98,7 +98,7 @@ public class StorageScript : MonoBehaviour
     {
         if (recipeID >= 0 && recipeID < recipes.Count)
         {
-            recipes[recipeID].ProduceProducts(storage);
+            recipes[recipeID].ProduceProducts(ref storage);
             StorageHasUpdated();
             return true;
         }
@@ -106,33 +106,34 @@ public class StorageScript : MonoBehaviour
     }
     public bool CreateNewProduct(RecipeData recipe)
     {
-        recipe.ProduceProducts(storage);
+        recipe.ProduceProducts(ref storage);
         StorageHasUpdated();
         return true;
     }
     public bool SellProduct(ProductData product)
     {
+        bool isSuccessful = false;
         if (storage.TryGetValue(product, out var count))
         {
             if (count == 1)
             {
                 storage.Remove(product);
                 market.UpdateMoney(product.ProductPrice);
-                return true;
+                isSuccessful = true;
             }
             else if (count > 1)
             {
                 storage[product]--;
                 market.UpdateMoney(product.ProductPrice);
-                return true;
+                isSuccessful = true;
             }
             else
             {
                 storage.Remove(product);
-                return false;
             }
         }
-        return false;
+        StorageHasUpdated();
+        return isSuccessful;
     }
 
     public void ClearStorage()
