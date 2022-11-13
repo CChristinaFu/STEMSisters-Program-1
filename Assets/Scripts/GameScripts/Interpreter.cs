@@ -240,7 +240,7 @@ public class Interpreter : BE2_TargetObject
         {
             if (System.Array.Find(recipeList, match: (x) => x.ProductName == recipeName) is RecipeData RD)
             {
-                Debug.LogWarning(Storage.StorageStringify());
+                // Debug.LogWarning(Storage.StorageStringify());
                 return Storage.CreateNewProduct(RD) ? NO_ERROR : new InterpreterError($"Could not create new product {RD.outputProduct.ProductName}, not enough inputs!");
             }
             return new InterpreterError($"Recipe with name {recipeName} not found!");
@@ -252,9 +252,13 @@ public class Interpreter : BE2_TargetObject
     {
         foreach (var products in productDictionary.Values)
         {
+            // foreach (var p in products)
+            // {
+            //     Debug.LogWarning(p.Name);
+            // }
             if (System.Array.Find(products, match: (x) => x.Name == productName) is ProductData PD)
             {
-                Debug.LogWarning(Storage.StorageStringify());
+                // Debug.LogWarning(Storage.StorageStringify());
                 return Storage.SellProduct(PD) switch
                 {
                     SellResult.SOLD_LAST => NO_ERROR,

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,8 +16,8 @@ public class StorageScript : MonoBehaviour
         * Sell to market, will total all the prices for the products in storage, 
             and add that to the money system; also clears storage at the end
     */
-    [SerializeField] private SerializedDictionary<string, (ProductData, int)> storage;
-    public Dictionary<string, (ProductData, int)> Storage() => storage.BuildNativeDictionary();
+    [SerializeField] private SerializedDictionary<string, ProductInfo> storage;
+    public Dictionary<string, ProductInfo> Storage() => storage.BuildNativeDictionary();
     [SerializeField] List<RecipeData> recipes = new();
     [SerializeField] MoneySystem market;
 
@@ -34,7 +35,7 @@ public class StorageScript : MonoBehaviour
     {
         if (storage.TryGetValue(product.Name, out var value))
         {
-            storage[product.Name] = (value.Item1, value.Item2 + amount);
+            storage[product.Name] = value + amount;
         }
         else
         {
@@ -60,8 +61,8 @@ public class StorageScript : MonoBehaviour
         string storageString = "{\n";
         foreach (var key in storage.Keys)
         {
-            var item = storage[key].Item1;
-            var amount = storage[key].Item2;
+            var item = storage[key].product;
+            var amount = storage[key].amount;
             storageString += $"\t{item.ProductName} (amount = {amount}, price = {item.ProductPrice}),\n";
 
         }
@@ -74,14 +75,6 @@ public class StorageScript : MonoBehaviour
         if (field.TryHarvestFirstAvailableCrop(out var crop))
         {
             AddOrUpdateStorage(crop, 1);
-            // if (storage.ContainsKey(crop))
-            // {
-            //     storage[crop] += 1;
-            // }
-            // else
-            // {
-            //     storage[crop] = 1;
-            // }
             StorageHasUpdated();
             return true;
         }
@@ -95,14 +88,6 @@ public class StorageScript : MonoBehaviour
         foreach (CropData crop in field.HarvestAllCrops())
         {
             AddOrUpdateStorage(crop, 1);
-            // if (storage.ContainsKey(crop))
-            // {
-            //     storage[crop] += 1;
-            // }
-            // else
-            // {
-            //     storage[crop] = 1;
-            // }
             hasHarvested = true;
         }
         if (hasHarvested)
@@ -131,24 +116,24 @@ public class StorageScript : MonoBehaviour
     {
         int produced = recipe.ProduceProducts(ref storage);
         StorageHasUpdated();
-        Debug.Log($"{storage.ContainsKey(recipe.outputProduct.Name)}");
+        // Debug.Log($"{storage.ContainsKey(recipe.outputProduct.Name)}");
         return produced > 0;
     }
     public SellResult SellProduct(ProductData product)
     {
         SellResult result = SellResult.NOT_SOLD;
-        Debug.LogWarning($"Try sell {product.Name}, {storage.ContainsKey(product.Name)}");
+        // Debug.LogWarning($"Try sell {product.Name}, {storage.ContainsKey(product.Name)}");
         if (storage.TryGetValue(product.Name, out var item))
         {
-            if (item.Item2 == 1)
+            if (item.amount == 1)
             {
                 storage.Remove(product.Name);
                 market.UpdateMoney(product.ProductPrice);
                 result = SellResult.SOLD_LAST;
             }
-            else if (item.Item2 > 1)
+            else if (item.amount > 1)
             {
-                storage[product.Name] = (item.Item1, item.Item2 - 1);
+                storage[product.Name] = item - 1;
                 market.UpdateMoney(product.ProductPrice);
                 result = SellResult.SOLD_ONE;
             }
@@ -159,7 +144,7 @@ public class StorageScript : MonoBehaviour
             }
         }
         StorageHasUpdated();
-        print(result.ToString());
+        // print(result.ToString());
         return result;
     }
 
@@ -211,4 +196,70 @@ public enum SellResult
     SOLD_LAST,
     REMOVED_EMPTY,
     NOT_SOLD,
+}
+
+[Serializable]
+public struct ProductInfo
+{
+    public ProductData product;
+    public int amount;
+
+    public static ProductInfo operator +(ProductInfo self, int addingAmount)
+    {
+        return (self.product, self.amount + addingAmount);
+    }
+    public static ProductInfo operator -(ProductInfo self, int subtractingAmount)
+    {
+        return (self.product, self.amount - subtractingAmount);
+    }
+    public static ProductInfo operator ++(ProductInfo self)
+    {
+        return (self.product, self.amount++);
+    }
+    public static ProductInfo operator --(ProductInfo self)
+    {
+        return (self.product, self.amount--);
+    }
+
+    public ProductInfo(ProductData item1)
+    {
+        product = item1;
+        // Auto create a single item (0 item would be removed from storage)
+        amount = 1;
+    }
+
+    // Below automaically created from VSCode tuple to struct refactor (lightbulb)
+    public ProductInfo(ProductData item1, int item2)
+    {
+        product = item1;
+        amount = item2;
+    }
+
+    public override bool Equals(object obj)
+    {
+        return obj is ProductInfo other &&
+               EqualityComparer<ProductData>.Default.Equals(product, other.product) &&
+               amount == other.amount;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(product, amount);
+    }
+
+    public void Deconstruct(out ProductData item1, out int item2)
+    {
+        item1 = product;
+        item2 = amount;
+    }
+
+    public static implicit operator (ProductData, int)(ProductInfo value)
+    {
+        return (value.product, value.amount);
+    }
+
+    public static implicit operator ProductInfo((ProductData, int) value)
+    {
+        return new ProductInfo(value.Item1, value.Item2);
+    }
 }
