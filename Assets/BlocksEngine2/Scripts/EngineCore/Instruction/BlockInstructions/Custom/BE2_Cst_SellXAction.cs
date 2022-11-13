@@ -35,6 +35,7 @@ public class BE2_Cst_SellXAction : BE2_InstructionBase, I_BE2_Instruction
 
         if (TargetObject is Interpreter i)
         {
+            Debug.Log($"tryselling {product}");
             var error = i.SellXAction(product);
             if (error.HasValue)
             {

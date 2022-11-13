@@ -15,8 +15,8 @@ public class StorageScript : MonoBehaviour
         * Sell to market, will total all the prices for the products in storage, 
             and add that to the money system; also clears storage at the end
     */
-    [SerializeField] private SerializedDictionary<ProductData, int> storage;
-    public Dictionary<ProductData, int> Storage() => storage.BuildNativeDictionary();
+    [SerializeField] private SerializedDictionary<string, (ProductData, int)> storage;
+    public Dictionary<string, (ProductData, int)> Storage() => storage.BuildNativeDictionary();
     [SerializeField] List<RecipeData> recipes = new();
     [SerializeField] MoneySystem market;
 
@@ -32,13 +32,13 @@ public class StorageScript : MonoBehaviour
 
     public void AddOrUpdateStorage(ProductData product, int amount = 1)
     {
-        if (storage.ContainsKey(product))
+        if (storage.TryGetValue(product.Name, out var value))
         {
-            storage[product] += amount;
+            storage[product.Name] = (value.Item1, value.Item2 + amount);
         }
         else
         {
-            storage[product] = amount;
+            storage[product.Name] = (product, amount);
         }
     }
 
@@ -58,9 +58,12 @@ public class StorageScript : MonoBehaviour
     public string StorageStringify()
     {
         string storageString = "{\n";
-        foreach (var item in storage.Keys)
+        foreach (var key in storage.Keys)
         {
-            storageString += $"\t{item.ProductName} (amount = {storage[item]}, price = {item.ProductPrice}),\n";
+            var item = storage[key].Item1;
+            var amount = storage[key].Item2;
+            storageString += $"\t{item.ProductName} (amount = {amount}, price = {item.ProductPrice}),\n";
+
         }
         storageString += "}";
         return storageString;
@@ -128,29 +131,30 @@ public class StorageScript : MonoBehaviour
     {
         int produced = recipe.ProduceProducts(ref storage);
         StorageHasUpdated();
+        Debug.Log($"{storage.ContainsKey(recipe.outputProduct.Name)}");
         return produced > 0;
     }
     public SellResult SellProduct(ProductData product)
     {
         SellResult result = SellResult.NOT_SOLD;
-        Debug.LogWarning($"Try sell {product.Name}");
-        if (storage.TryGetValue(product, out var count))
+        Debug.LogWarning($"Try sell {product.Name}, {storage.ContainsKey(product.Name)}");
+        if (storage.TryGetValue(product.Name, out var item))
         {
-            if (count == 1)
+            if (item.Item2 == 1)
             {
-                storage.Remove(product);
+                storage.Remove(product.Name);
                 market.UpdateMoney(product.ProductPrice);
                 result = SellResult.SOLD_LAST;
             }
-            else if (count > 1)
+            else if (item.Item2 > 1)
             {
-                storage[product]--;
+                storage[product.Name] = (item.Item1, item.Item2 - 1);
                 market.UpdateMoney(product.ProductPrice);
                 result = SellResult.SOLD_ONE;
             }
             else
             {
-                storage.Remove(product);
+                storage.Remove(product.Name);
                 result = SellResult.REMOVED_EMPTY;
             }
         }
@@ -164,17 +168,18 @@ public class StorageScript : MonoBehaviour
         storage.Clear();
         StorageHasUpdated();
     }
-    public int SellToMarket()
-    {
-        int total = 0;
-        foreach (var (product, count) in storage)
+    /*    public int SellToMarket()
         {
-            total += product.ProductPrice * count;
+            int total = 0;
+            foreach (var (product, count) in storage)
+            {
+                total += product.ProductPrice * count;
+            }
+            ClearStorage();
+            market.UpdateMoney(total);
+            return total;
         }
-        ClearStorage();
-        market.UpdateMoney(total);
-        return total;
-    }
+    */
     // #if UNITY_EDITOR
     [SerializeField, EditorButton(nameof(TestHarvest))] private FieldSystem currentTestingField;
     [SerializeField, EditorButton(nameof(TestCreateNewProduct)), EditorButton(nameof(TestSellStorage))] private int testRecipeID = -1;
@@ -193,8 +198,9 @@ public class StorageScript : MonoBehaviour
     }
     public void TestSellStorage()
     {
-        var totalPrice = SellToMarket();
-        Debug.Log($"total money made = {totalPrice}");
+        //var totalPrice = SellToMarket();
+        //Debug.Log($"total money made = {totalPrice}");
+        Debug.LogError("NO LONGER in use");
     }
     // #endif
 }

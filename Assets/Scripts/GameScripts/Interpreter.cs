@@ -74,13 +74,13 @@ public class Interpreter : BE2_TargetObject
     public class UEvent_List_Var : UnityEvent<List<string>> { }
     public UEvent_List_Var OnVariableUpdate = new();
 
-    public ProductData[] GetProductKind(ProductVariableKind kind, bool ignoreBlankProducts = true)
+    public ProductData[] GetProductKind(ProductVariableKind kind, bool ignoreBlankProducts = true, bool useRecipeOutput = false)
     {
         if (kind == ProductVariableKind.ALL_PRODUCTS)
         {
             // Combine Crop, Animal, and Recipe Products into a single array
             return GetProductKind(ProductVariableKind.AGRICULTURAL, ignoreBlankProducts)
-                .Concat(GetProductKind(ProductVariableKind.RECIPE, ignoreBlankProducts: true))
+                .Concat(GetProductKind(ProductVariableKind.RECIPE, ignoreBlankProducts: true, useRecipeOutput: true))
                 .ToArray();
         }
         else if (kind == ProductVariableKind.AGRICULTURAL)
@@ -92,6 +92,10 @@ public class Interpreter : BE2_TargetObject
         }
         else if (productDictionary.TryGetValue(kind, out var products))
         {
+            if (kind == ProductVariableKind.RECIPE && useRecipeOutput)
+            {
+                products = products.Select(p => ((RecipeData)p).outputProduct).ToArray();
+            }
             if (ignoreBlankProducts)
             {
                 return products;
@@ -248,7 +252,7 @@ public class Interpreter : BE2_TargetObject
     {
         foreach (var products in productDictionary.Values)
         {
-            if (System.Array.Find(products, match: (x) => x.ProductName == productName) is ProductData PD)
+            if (System.Array.Find(products, match: (x) => x.Name == productName) is ProductData PD)
             {
                 Debug.LogWarning(Storage.StorageStringify());
                 return Storage.SellProduct(PD) switch
