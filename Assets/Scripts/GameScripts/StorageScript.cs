@@ -30,6 +30,18 @@ public class StorageScript : MonoBehaviour
         StorageHasUpdated();
     }
 
+    public void AddOrUpdateStorage(ProductData product, int amount = 1)
+    {
+        if (storage.ContainsKey(product))
+        {
+            storage[product] += amount;
+        }
+        else
+        {
+            storage[product] = amount;
+        }
+    }
+
     private void StorageHasUpdated()
     {
         if (storage.Count == 0)
@@ -38,28 +50,35 @@ public class StorageScript : MonoBehaviour
         }
         else
         {
-            string storageString = "{\n";
-            foreach (var item in storage.Keys)
-            {
-                storageString += $"\t{item.ProductName} (amount = {storage[item]}, price = {item.ProductPrice}),\n";
-            }
-            storageString += "}";
+            string storageString = StorageStringify();
             OnStorageUpdate.Invoke(storageString);
         }
+    }
+
+    public string StorageStringify()
+    {
+        string storageString = "{\n";
+        foreach (var item in storage.Keys)
+        {
+            storageString += $"\t{item.ProductName} (amount = {storage[item]}, price = {item.ProductPrice}),\n";
+        }
+        storageString += "}";
+        return storageString;
     }
 
     public bool HarvestCropFromField(FieldSystem field)
     {
         if (field.TryHarvestFirstAvailableCrop(out var crop))
         {
-            if (storage.ContainsKey(crop))
-            {
-                storage[crop] += 1;
-            }
-            else
-            {
-                storage[crop] = 1;
-            }
+            AddOrUpdateStorage(crop, 1);
+            // if (storage.ContainsKey(crop))
+            // {
+            //     storage[crop] += 1;
+            // }
+            // else
+            // {
+            //     storage[crop] = 1;
+            // }
             StorageHasUpdated();
             return true;
         }
@@ -72,14 +91,15 @@ public class StorageScript : MonoBehaviour
 
         foreach (CropData crop in field.HarvestAllCrops())
         {
-            if (storage.ContainsKey(crop))
-            {
-                storage[crop] += 1;
-            }
-            else
-            {
-                storage[crop] = 1;
-            }
+            AddOrUpdateStorage(crop, 1);
+            // if (storage.ContainsKey(crop))
+            // {
+            //     storage[crop] += 1;
+            // }
+            // else
+            // {
+            //     storage[crop] = 1;
+            // }
             hasHarvested = true;
         }
         if (hasHarvested)
@@ -106,34 +126,37 @@ public class StorageScript : MonoBehaviour
     }
     public bool CreateNewProduct(RecipeData recipe)
     {
-        recipe.ProduceProducts(ref storage);
+        int produced = recipe.ProduceProducts(ref storage);
         StorageHasUpdated();
-        return true;
+        return produced > 0;
     }
-    public bool SellProduct(ProductData product)
+    public SellResult SellProduct(ProductData product)
     {
-        bool isSuccessful = false;
+        SellResult result = SellResult.NOT_SOLD;
+        Debug.LogWarning($"Try sell {product.Name}");
         if (storage.TryGetValue(product, out var count))
         {
             if (count == 1)
             {
                 storage.Remove(product);
                 market.UpdateMoney(product.ProductPrice);
-                isSuccessful = true;
+                result = SellResult.SOLD_LAST;
             }
             else if (count > 1)
             {
                 storage[product]--;
                 market.UpdateMoney(product.ProductPrice);
-                isSuccessful = true;
+                result = SellResult.SOLD_ONE;
             }
             else
             {
                 storage.Remove(product);
+                result = SellResult.REMOVED_EMPTY;
             }
         }
         StorageHasUpdated();
-        return isSuccessful;
+        print(result.ToString());
+        return result;
     }
 
     public void ClearStorage()
@@ -174,4 +197,12 @@ public class StorageScript : MonoBehaviour
         Debug.Log($"total money made = {totalPrice}");
     }
     // #endif
+}
+
+public enum SellResult
+{
+    SOLD_ONE,
+    SOLD_LAST,
+    REMOVED_EMPTY,
+    NOT_SOLD,
 }

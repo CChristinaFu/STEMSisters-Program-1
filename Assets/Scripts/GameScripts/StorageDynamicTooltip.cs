@@ -14,8 +14,7 @@ public class StorageDynamicTooltip : MonoBehaviour
         Dictionary<ProductData, int> inGameStorage = storage.Storage();
         foreach (var product in i.GetProductKind(ProductVariableKind.ALL_PRODUCTS))
         {
-            int value = 0;
-            inGameStorage.TryGetValue(product, out value);
+            inGameStorage.TryGetValue(product, out int value);
             tooltip.infoLeft += $"{product.ProductName}: {value}\n";
             tooltip.infoRight += $"${product.ProductPrice} each\n";
         }

@@ -212,7 +212,6 @@ public class Interpreter : BE2_TargetObject
         {
             if (System.Array.Find(crops, (x) => x.ProductName == cropName) is CropData crop)
             {
-
                 return HarvestItemInList(crop, fieldName);
             }
             return new InterpreterError($"No crop found with name {cropName}");
@@ -237,7 +236,8 @@ public class Interpreter : BE2_TargetObject
         {
             if (System.Array.Find(recipeList, match: (x) => x.ProductName == recipeName) is RecipeData RD)
             {
-                return Storage.CreateNewProduct(RD) ? NO_ERROR : new InterpreterError($"Could not create new product {RD.outputProduct.ProductName}");
+                Debug.LogWarning(Storage.StorageStringify());
+                return Storage.CreateNewProduct(RD) ? NO_ERROR : new InterpreterError($"Could not create new product {RD.outputProduct.ProductName}, not enough inputs!");
             }
             return new InterpreterError($"Recipe with name {recipeName} not found!");
         }
@@ -250,7 +250,15 @@ public class Interpreter : BE2_TargetObject
         {
             if (System.Array.Find(products, match: (x) => x.ProductName == productName) is ProductData PD)
             {
-                return Storage.SellProduct(PD) ? NO_ERROR : new InterpreterError($"Could not sell {productName}!");
+                Debug.LogWarning(Storage.StorageStringify());
+                return Storage.SellProduct(PD) switch
+                {
+                    SellResult.SOLD_LAST => NO_ERROR,
+                    SellResult.SOLD_ONE => NO_ERROR,
+                    SellResult.REMOVED_EMPTY => new InterpreterError($"Could not sell {productName}, but removed from inventory!"),
+                    SellResult.NOT_SOLD => new InterpreterError($"Could not sell {productName}, as there is none!"),
+                    _ => new InterpreterError($"Unknown error: Could not sell {productName}!"),
+                };
             }
         }
         return new InterpreterError($"No product named {productName} found in storage!");

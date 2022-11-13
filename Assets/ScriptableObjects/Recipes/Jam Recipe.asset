@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ProductImage>k__BackingField: {fileID: 0}
   <ProductPrice>k__BackingField: 1
-  <ProductName>k__BackingField: Jam
+  <ProductName>k__BackingField: Jam Recipe
   inputProducts:
     pairs:
     - key: {fileID: 11400000, guid: 05f6ca14442c74d4cb93d323e5859eb4, type: 2}

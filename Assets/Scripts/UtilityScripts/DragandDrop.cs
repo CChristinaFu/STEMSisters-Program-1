@@ -14,6 +14,7 @@ public class DragandDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     private void Awake()
     {
+        originalPosition = this.transform.position;
         if (mainCamera == null)
         {
             mainCamera = Camera.main;
@@ -63,7 +64,7 @@ public class DragandDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         var tempCol = new Collider2D[2];
         // print($"{col.offset}, {col.size}");
-        isBeingBlocked = Physics2D.OverlapBoxNonAlloc(GetMouseWithOffset(), col.size, 0, tempCol) > 1;
+        isBeingBlocked = Physics2D.OverlapBoxNonAlloc(transform.position, col.size, 0, tempCol) > 1;
         // print($"{gameObject} => {isBeingBlocked}: {tempCol[0]} {tempCol[1]}");
         if (isBeingBlocked)
         {

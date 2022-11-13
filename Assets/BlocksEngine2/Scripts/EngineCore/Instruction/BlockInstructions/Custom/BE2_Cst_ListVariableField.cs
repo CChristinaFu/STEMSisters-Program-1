@@ -28,7 +28,7 @@ public class BE2_Cst_ListVariableField : BE2_InstructionBase, I_BE2_Instruction
         if (TargetObject is Interpreter i)
         {
             i.CreateOrUpdateField(variableName, cropName);
-            Debug.Log("successfully created field");
+            // Debug.Log("successfully created field");
         }
         // --- use Section0Inputs[inputIndex] to get the Block inputs from the first section (index 0).
 
