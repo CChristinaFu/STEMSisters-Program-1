@@ -9,7 +9,7 @@ public class ShowFieldCrop : MonoBehaviour
     [SerializeField] GameObject spriteVisualPrefab;
     [SerializeField] Sprite defaultSprite;
     [SerializeField] Vector2 spacing = Vector2.one;
-    private Vector2 CurrentGridSize = Vector2.zero;
+    private Vector2Int CurrentGridSize = Vector2Int.zero;
     // Start is called before the first frame update
     void ReinitializeGrid()
     {
@@ -29,11 +29,14 @@ public class ShowFieldCrop : MonoBehaviour
         spacing = field.CropData.CropSpacing;
         for (int i = 0; i < CurrentGridSize.x; i++)
         {
-            for (int j = 0; j < CurrentGridSize.y; j++)
+            for (int j = CurrentGridSize.y - 1; j >= 0; j--)
             {
                 var subFieldSprite = Instantiate(spriteVisualPrefab, this.transform);
                 subFieldSprite.transform.localPosition = new Vector3(i * spacing.x, j * spacing.y);
-
+                if (subFieldSprite.GetComponent<SpriteRenderer>() is SpriteRenderer sprite)
+                {
+                    sprite.sortingOrder = CurrentGridSize.y - j;
+                }
             }
         }
     }

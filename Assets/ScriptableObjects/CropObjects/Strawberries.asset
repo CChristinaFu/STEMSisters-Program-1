@@ -19,7 +19,7 @@ MonoBehaviour:
   growthTimer: 2
   witherTimer: 1
   waterconsumption: 2
-  WaterRequirements: {x: 0, y: 0}
+  WaterRequirements: {x: 3, y: 4}
   CropGridSize: {x: 4, y: 4}
   CropSpriteSize: {x: 1, y: 1}
   CropSpacing: {x: 1.2, y: 0.9}

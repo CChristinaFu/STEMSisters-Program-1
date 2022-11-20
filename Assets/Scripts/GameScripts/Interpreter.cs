@@ -7,6 +7,7 @@ using System.Linq;
 
 public class Interpreter : BE2_TargetObject
 {
+    public const int SECONDS_IN_DAY = 4;
     private readonly InterpreterError? NO_ERROR = null;
     private Coroutine timerCoroutine = null;
     [Header("Helper Variables")]
@@ -27,6 +28,8 @@ public class Interpreter : BE2_TargetObject
     public MoneySystem Money { get; private set; }
     [field: SerializeField]
     public Dictionary<string, FieldSystem> Fields { get; private set; } = new();
+    public UEvent_int OnDayUpdate = new();
+    public UEvent_int OnCountdownUpdate = new();
     public void ResetField()
     {
         foreach (var f in Fields.Values)
@@ -67,6 +70,8 @@ public class Interpreter : BE2_TargetObject
                 currentTargetTime -= Time.deltaTime;
             }
             DebugGrowAll();
+            OnDayUpdate.Invoke((int)i / SECONDS_IN_DAY + 1);
+            OnCountdownUpdate.Invoke(SECONDS_IN_DAY - (int)i % SECONDS_IN_DAY);
             currentTargetTime = waitTime;
         }
         Debug.Log("finish running timer");
@@ -187,7 +192,8 @@ public class Interpreter : BE2_TargetObject
     {
         if (Fields.TryGetValue(fieldName, out var field))
         {
-            // TODO: Water Crops Function needed
+            field.WaterUpdate();
+            return NO_ERROR;
         }
         return new InterpreterError($"No Field found with name {fieldName}");
     }

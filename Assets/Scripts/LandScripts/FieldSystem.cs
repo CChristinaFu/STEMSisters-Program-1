@@ -29,7 +29,7 @@ public class FieldSystem : MonoBehaviour
     {
         foreach (var crop in subField)
         {
-            if (crop != null)
+            if (crop != null && !crop.IsWithered)
             {
 
                 if (crop.currentLevelTimer > 1)
@@ -50,9 +50,20 @@ public class FieldSystem : MonoBehaviour
                 {
                     crop.IsWithered = true;
                 }
+                if (crop.currentGrowthLevel == CropData.growthLevel)
+                {
+                    if (!checkCropWaterLevel(crop))
+                    {
+                        crop.IsWithered = true;
+                    }
+                }
             }
         }
         OnFieldUpdate.Invoke();
+    }
+    public bool checkCropWaterLevel(FieldCrop crop)
+    {
+        return !(crop.waterAmount < CropData.WaterRequirements.x || crop.waterAmount > CropData.WaterRequirements.y);
     }
     public float TotalWaterConsumption()
     {
@@ -66,8 +77,15 @@ public class FieldSystem : MonoBehaviour
         }
         return runningTotal;
     }
-    public void WaterUpdate(float waterGiven)
+    public void WaterUpdate(float waterGiven = 1)
     {
+        foreach (var crop in subField)
+        {
+            if (crop != null)
+            {
+                crop.waterAmount += waterGiven;
+            }
+        }
         //Q1: How do we split waterGiven between all the crops after every update?
         //Q2: How do we determine if the plant has met the overall water requirements?
         //Q3: How do we calculate if daily water requirements are met?
@@ -210,7 +228,7 @@ public class FieldCrop
     public int currentGrowthLevel = -1;
     public int currentLevelTimer = -1;
     public int witherTimer = -1;
-    public float waterAmount = -1;
+    public float waterAmount = 0;
     public WaterStatus waterStatus;
     public bool IsWithered = false;
 }
