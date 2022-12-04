@@ -13,14 +13,15 @@ public interface I_BE2_Block
     /// Defines the block internal execution characteritics
     /// </summary>
     BlockTypeEnum Type { get; set; }
-    
+
     I_BE2_BlockLayout Layout { get; }
     I_BE2_Instruction Instruction { get; }
     I_BE2_BlockSection ParentSection { get; }
     I_BE2_Drag Drag { get; }
+    [SerializeField] protected int BlockPrice => 0;
 
     /// <summary>
     /// Set visible/hidden the block hilight, used to identify a running/active block  
     /// </summary>
-    void SetShadowActive(bool value); 
+    void SetShadowActive(bool value);
 }

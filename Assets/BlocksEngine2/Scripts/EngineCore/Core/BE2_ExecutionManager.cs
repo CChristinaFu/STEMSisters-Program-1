@@ -68,6 +68,7 @@ public class BE2_ExecutionManager : MonoBehaviour
 
     public void Play()
     {
+        
         BE2_MainEventsManager.Instance.TriggerEvent(BE2EventTypes.OnPlay);
         EventSystem.current.SetSelectedGameObject(null);
     }

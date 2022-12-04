@@ -26,10 +26,22 @@ public class Interpreter : BE2_TargetObject
     public StorageScript Storage { get; private set; }
     [field: SerializeField]
     public MoneySystem Money { get; private set; }
+    [field: SerializeField] public BE2_ProgrammingEnv Environ { get; private set; }
+
     [field: SerializeField]
     public Dictionary<string, FieldSystem> Fields { get; private set; } = new();
     public UEvent_int OnDayUpdate = new();
     public UEvent_int OnCountdownUpdate = new();
+    private void OnEnable()
+    {
+        BE2_MainEventsManager.Instance.StartListening(BE2EventTypes.OnPlay, TryStartTimer);
+        BE2_MainEventsManager.Instance.StartListening(BE2EventTypes.OnStop, StopTimer);
+    }
+    private void OnDisable()
+    {
+        BE2_MainEventsManager.Instance.StopListening(BE2EventTypes.OnPlay, TryStartTimer);
+        BE2_MainEventsManager.Instance.StopListening(BE2EventTypes.OnStop, StopTimer);
+    }
     public void ResetField()
     {
         foreach (var f in Fields.Values)
@@ -39,12 +51,31 @@ public class Interpreter : BE2_TargetObject
 
         Fields.Clear();
     }
-    public void StartTimer()
+    public void TryStartTimer()
     {
-        if (timerCoroutine is null)
+        //check sum of all block prices is less than or equal to current money
+        int totalPrice = 0;
+        Environ.UpdateBlocksList();
+        Debug.Log(BE2_DragDropManager.Instance.SpotsList.Count);
+        foreach (var block in Environ.BlocksList)
         {
-            currentTargetTime = waitTime;
-            timerCoroutine = StartCoroutine(RunTimer());
+            totalPrice += 1;
+            Debug.Log(block.Transform);
+        }
+        foreach (var block in BE2_DragDropManager.Instance.SpotsList)
+        {
+            totalPrice += 1;
+            Debug.Log(block.Transform);
+        }
+        Debug.Log(totalPrice);
+
+        if (Money.HasEnoughMoney(0))
+        {
+            if (timerCoroutine is null)
+            {
+                currentTargetTime = waitTime;
+                timerCoroutine = StartCoroutine(RunTimer());
+            }
         }
     }
     public void StopTimer()
