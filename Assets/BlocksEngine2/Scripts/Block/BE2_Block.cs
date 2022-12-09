@@ -9,7 +9,9 @@ public class BE2_Block : MonoBehaviour, I_BE2_Block
 
     [SerializeField]
     BlockTypeEnum _type;
+    [SerializeField] int blockPrice = 0;
     public BlockTypeEnum Type { get => _type; set => _type = value; }
+    public int BlockPrice { get => blockPrice; }
     Transform _transform;
     public Transform Transform => _transform ? _transform : transform;
     public I_BE2_BlockLayout Layout { get; set; }

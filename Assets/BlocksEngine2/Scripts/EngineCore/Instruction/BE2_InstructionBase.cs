@@ -14,8 +14,6 @@ public class BE2_InstructionBase : MonoBehaviour, I_BE2_InstructionBase
     public I_BE2_BlocksStack BlocksStack { get; set; }
     public I_BE2_TargetObject TargetObject { get; set; }
     public int[] LocationsArray { get; set; }
-    //custom block stuff
-    [SerializeField] protected int blockPrice = 0;
     protected virtual void OnAwake() { }
     protected virtual void OnStart() { }
     protected virtual void OnButtonPlay() { }

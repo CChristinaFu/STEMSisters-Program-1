@@ -552,7 +552,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 219, y: -219}
-  m_SizeDelta: {x: 150, y: 80}
+  m_SizeDelta: {x: 317, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5697501678373536962
 MonoBehaviour:
@@ -618,6 +618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 0
+  blockPrice: 2
 --- !u!114 &8783097750255505534
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public interface I_BE2_Block
     I_BE2_Instruction Instruction { get; }
     I_BE2_BlockSection ParentSection { get; }
     I_BE2_Drag Drag { get; }
-    [SerializeField] protected int BlockPrice => 0;
+    public int BlockPrice => 0;
 
     /// <summary>
     /// Set visible/hidden the block hilight, used to identify a running/active block  

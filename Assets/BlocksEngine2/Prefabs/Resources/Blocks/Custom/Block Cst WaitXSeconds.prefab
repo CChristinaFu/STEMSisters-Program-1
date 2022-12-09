@@ -1004,6 +1004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 0
+  blockPrice: 2
 --- !u!114 &2325885437556096767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1016,7 +1017,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9043433497bd054a9e798fed6ebf9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockPrice: 0
 --- !u!1 &4069285226784886334
 GameObject:
   m_ObjectHideFlags: 0

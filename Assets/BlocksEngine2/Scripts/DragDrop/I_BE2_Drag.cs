@@ -13,12 +13,12 @@ public interface I_BE2_Drag
     /// Opens up the context menu
     /// </summary>
     void OnRightPointerDownOrHold();
-    
+
     /// <summary>
     /// Keeps detecting possible drop spots 
     /// </summary>
     void OnDrag();
-    
+
     /// <summary>
     /// Places the block into a found spot, programming env, or deletes it
     /// </summary>

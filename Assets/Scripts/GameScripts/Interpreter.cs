@@ -56,26 +56,28 @@ public class Interpreter : BE2_TargetObject
         //check sum of all block prices is less than or equal to current money
         int totalPrice = 0;
         Environ.UpdateBlocksList();
-        Debug.Log(BE2_DragDropManager.Instance.SpotsList.Count);
+
         foreach (var block in Environ.BlocksList)
         {
-            totalPrice += 1;
-            Debug.Log(block.Transform);
+            foreach (var childblock in block.Transform.GetComponentsInChildren<I_BE2_Block>())
+            {
+                totalPrice += childblock.BlockPrice;
+                //Debug.Log(childblock.Transform);
+            }
         }
-        foreach (var block in BE2_DragDropManager.Instance.SpotsList)
+        //Debug.Log(totalPrice);
+        if (Money.HasEnoughMoney(totalPrice))
         {
-            totalPrice += 1;
-            Debug.Log(block.Transform);
-        }
-        Debug.Log(totalPrice);
-
-        if (Money.HasEnoughMoney(0))
-        {
+            Money.UpdateMoney(-totalPrice);
             if (timerCoroutine is null)
             {
                 currentTargetTime = waitTime;
                 timerCoroutine = StartCoroutine(RunTimer());
             }
+        }
+        else
+        {
+            Debug.LogError("Not enough money");
         }
     }
     public void StopTimer()
