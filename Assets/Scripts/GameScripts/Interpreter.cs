@@ -77,7 +77,7 @@ public class Interpreter : BE2_TargetObject
         }
         else
         {
-            Debug.LogError("Not enough money");
+            InGameConsoleScript.LogMessage("Not enough money");
         }
     }
     public void StopTimer()

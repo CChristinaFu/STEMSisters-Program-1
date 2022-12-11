@@ -39,7 +39,7 @@ public class BE2_Cst_PlaceXInYAction : BE2_InstructionBase, I_BE2_Instruction
             var error = i.PlaceItemInList(raw, listName);
             if (error.HasValue)
             {
-                Debug.LogError(error.Value.message);
+                InGameConsoleScript.LogMessage(error.Value.message);
             }
         }
 

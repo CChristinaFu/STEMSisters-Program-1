@@ -38,7 +38,7 @@ public class BE2_Cst_MakeXAction : BE2_InstructionBase, I_BE2_Instruction
             var error = i.MakeXAction(recipe);
             if (error.HasValue)
             {
-                Debug.LogError(error.Value.message);
+                InGameConsoleScript.LogMessage(error.Value.message);
             }
         }
 

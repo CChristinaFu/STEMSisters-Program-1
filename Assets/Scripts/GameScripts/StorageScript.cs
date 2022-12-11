@@ -185,7 +185,7 @@ public class StorageScript : MonoBehaviour
     {
         //var totalPrice = SellToMarket();
         //Debug.Log($"total money made = {totalPrice}");
-        Debug.LogError("NO LONGER in use");
+        InGameConsoleScript.LogMessage("NO LONGER in use");
     }
     // #endif
 }

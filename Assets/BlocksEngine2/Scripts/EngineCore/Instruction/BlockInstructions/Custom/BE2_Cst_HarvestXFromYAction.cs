@@ -40,7 +40,7 @@ public class BE2_Cst_HarvestXFromYAction : BE2_InstructionBase, I_BE2_Instructio
             var error = i.HarvestItemInList(raw, listName);
             if (error.HasValue)
             {
-                Debug.LogError(error.Value.message);
+                InGameConsoleScript.LogMessage(error.Value.message);
             }
         }
 

@@ -39,7 +39,7 @@ public class BE2_Cst_SellXAction : BE2_InstructionBase, I_BE2_Instruction
             var error = i.SellXAction(product);
             if (error.HasValue)
             {
-                Debug.LogError(error.Value.message);
+                InGameConsoleScript.LogMessage(error.Value.message);
             }
         }
 
